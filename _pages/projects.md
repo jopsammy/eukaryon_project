@@ -1,11 +1,10 @@
 ---
 layout: page
-title: projects
+title: projects / 项目
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: Eukaryon Project 的工程路线与核心组件 / Engineering roadmap and core components of the Eukaryon Project
 nav: true
-nav_order: 3
-display_categories: [work, fun]
+nav_order: 2
 horizontal: false
 ---
 

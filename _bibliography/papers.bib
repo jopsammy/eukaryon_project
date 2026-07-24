@@ -1,115 +1,44 @@
 ---
 ---
 
-@string{aps = {American Physical Society,}}
-
-@book{einstein1920relativity,
-  title     = {Relativity: the Special and General Theory},
-  author    = {Einstein, Albert},
-  year      = {1920},
-  publisher = {Methuen & Co Ltd},
-  html      = {relativity.html}
+@article{zeng2026longhorizon,
+  abbr          = {Long-Horizon},
+  bibtex_show   = {true},
+  title         = {长程实践：超越单次能力的结构下限},
+  author        = {曾庆明 (Sammy Zeng) and 魏道 (Dao Wei)},
+  abstract      = {现有对智能体（Agent）能力的讨论，大多默认以单次局部闭环为基本尺度，因此难以解释真实复杂任务中反复出现的持续性失稳。本文提出"长程实践"这一结构概念，将其定义为存在不可预计算顺序依赖链、必须跨检查点持续推进的实践类型：长程不是时间更久，而是关键信息必须在推进过程中逐步生成。我们从"关键输入为何当前不可得"的逻辑分叉出发，穷举得到认知缺口、媒介强制、决策分叉与外部漂移四种来源，并据此建立由运载前提、6 条逻辑必要条件与 7 条工程补偿条件构成的三层结构下限体系。由此可见，单次能力与长程能力之间存在三段非蕴含链：单次能力强不推出单检查点可完成，单检查点可完成不推出跨检查点持续推进，跨检查点持续推进也不推出单轮 Benchmark 高分；当前评测框架因而在能力尺度上存在根本错位。},
+  year          = {2026},
+  doi           = {10.5281/zenodo.20470866},
+  url           = {https://doi.org/10.5281/zenodo.20470866},
+  pdf           = {long-horizon-cn.pdf},
+  preview       = {../img/figures/fig01-expect-vs-reality.png},
+  selected      = {true}
 }
 
-@book{einstein1956investigations,
-  bibtex_show = {true},
-  title       = {Investigations on the Theory of the Brownian Movement},
-  author      = {Einstein, Albert},
-  year        = {1956},
-  publisher   = {Courier Corporation},
-  preview     = {brownian-motion.gif}
+@article{zeng2026blackgrail,
+  abbr          = {Black Grail},
+  bibtex_show   = {true},
+  title         = {从黑圣杯到令咒系统：长程实践的离散本质与Agent治理边界},
+  author        = {曾庆明 (Sammy Zeng)},
+  abstract      = {这篇论文回答一个朴素的问题：怎么做出更好的Agent系统？七个主流开源Agent系统的源码级调研表明，模型调用协议（原核）已在±20行代码内收敛；真正的分水岭是治理基础设施（真核）——状态治理维持跨时间的连续性，权力治理定义与外部世界的行动边界。本文提出三层同心模型（原核/真核/皮层）作为分析框架，并基于长程实践的形式定义推导出七个核心工程决策节点。核心判断是：当任务存在不可预计算的顺序依赖时，离散检查点、权限闸门、结构化状态传递和机向人请示等治理机制不是工程可选项，而是结构必需品。更深一层：治理的进步无法来自自动优化——Agent系统中"什么是对的"在执行前不存在，只能从真实部署的失败中观察和学习。这正是Agent系统走"演化"而非"设计"路径的深层原因。治理不是能力的枷锁，而是释放LLM智能潜力的结构性前提。},
+  year          = {2026},
+  doi           = {10.5281/zenodo.21532460},
+  url           = {https://doi.org/10.5281/zenodo.21532460},
+  pdf           = {black-grail-command-spell-cn.pdf},
+  preview       = {../img/papers/长程实践_CN_四断裂穿透路径.png},
+  selected      = {true}
 }
 
-@article{einstein1950meaning,
-  abbr        = {AJP},
-  bibtex_show = {true},
-  title       = {The meaning of relativity},
-  author      = {Einstein, Albert and Taub, AH},
-  journal     = {American Journal of Physics},
-  volume      = {18},
-  number      = {6},
-  pages       = {403--404},
-  year        = {1950},
-  publisher   = {American Association of Physics Teachers}
-}
-
-@article{PhysRev.47.777,
-  abbr              = {PhysRev},
-  title             = {Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author            = {Einstein*†, A. and Podolsky*, B. and Rosen*, N.},
-  abstract          = {In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal           = {Phys. Rev.},
-  location          = {New Jersey},
-  volume            = {47},
-  issue             = {10},
-  pages             = {777--780},
-  numpages          = {0},
-  year              = {1935},
-  month             = {May},
-  publisher         = aps,
-  doi               = {10.1103/PhysRev.47.777},
-  url               = {https://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html              = {https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf               = {example_pdf.pdf},
-  altmetric         = {248277},
-  dimensions        = {true},
-  google_scholar_id = {qyhmnyLat1gC},
-  video             = {https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ},
-  additional_info   = {. *More Information* can be [found here](https://github.com/alshedivat/al-folio/)},
-  annotation        = {* Example use of superscripts<br>† Albert Einstein},
-  selected          = {true},
-  inspirehep_id     = {3255}
-}
-
-@article{einstein1905molekularkinetischen,
-  title     = {{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author    = {Einstein, A.},
-  journal   = {Annalen der physik},
-  volume    = {322},
-  number    = {8},
-  pages     = {549--560},
-  year      = {1905},
-  publisher = {Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr    = {Ann. Phys.},
-  title   = {Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author  = {Einstein, A.},
-  journal = {Ann. Phys.},
-  volume  = {17},
-  pages   = {549--560},
-  year    = {1905}
-}
-
-@article{einstein1905electrodynamics,
-  title  = {On the electrodynamics of moving bodies},
-  author = {Einstein, A.},
-  year   = {1905}
-}
-
-@article{einstein1905photoelectriceffect,
-  bibtex_show = {true},
-  abbr        = {Ann. Phys.},
-  title       = {{{\"U}ber einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt}},
-  author      = {Albert Einstein},
-  abstract    = {This is the abstract text.},
-  journal     = {Ann. Phys.},
-  volume      = {322},
-  number      = {6},
-  pages       = {132--148},
-  year        = {1905},
-  doi         = {10.1002/andp.19053220607},
-  award       = {Albert Einstein receveid the **Nobel Prize in Physics** 1921 *for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect*},
-  award_name  = {Nobel Prize}
-}
-
-@book{przibram1967letters,
-  bibtex_show = {true},
-  title       = {Letters on wave mechanics},
-  author      = {Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year        = {1967},
-  publisher   = {Vision},
-  preview     = {wave-mechanics.gif},
-  abbr        = {Vision}
+@article{zengwei2026acparadigm,
+  abbr          = {AC Paradigm},
+  bibtex_show   = {true},
+  title         = {面向长程实践的锚点与契约：AC范式V6技术报告（TRAE特调）},
+  author        = {曾庆明 (Sammy Zeng) and 魏道 (Dao Wei)},
+  abstract      = {大语言模型在长程任务（Long-Horizon）中的失败常被归因于单次推理能力不足，但其实质是不可预计算的顺序依赖链与媒介强制导致的结构性断裂。AC范式（"锚点契约式人机协同工程范式"）正是为此提出的一种协同工程中间层：它将长程实践理论所要求的契约连续性、状态连续性与评测独立性转化为可操作的组织结构，为有限智能体（人与LLM）协同提供维持长程实践的组织下限。这里所说的"下限"不是替代基座模型能力的总下限，而是在执行基座已具备最低指令遵循、局部推理与基本工具调用能力时，长程连续性仍然额外需要满足的结构下限。本文讨论的不是AC范式的全部最终形态，而是其在TRAE IDE上的首个完整工程化实例——AC范式V6（TRAE特调版）。我们阐述了基于"无知之幕"的GN-004独立审查、对冲性能风险的subagent调度等核心机制的设计原理，说明为什么同一套组织原则在落入具体agent工具时仍需围绕平台接口做独立调优，并论证了基建噪声对长程实践的系统性影响。最终，通过一道由DeepSeek-v4-pro持续102小时攻克、历经16轮跨断面迭代的组合数学案例，本文展示了AC范式的锚点—契约—审查三层结构如何在当前实现环境中支撑长程闭合；这一案例不构成跨平台普适性的充分证明，但构成了该范式在真实agent平台上具备工程可行性的首个存在性证据。},
+  year          = {2026},
+  doi           = {10.5281/zenodo.20471461},
+  url           = {https://doi.org/10.5281/zenodo.20471461},
+  pdf           = {ac-paradigm-v6-tr-cn.pdf},
+  preview       = {../img/papers/AC技术报告_CN_AC范式层次定位.png},
+  selected      = {true}
 }
