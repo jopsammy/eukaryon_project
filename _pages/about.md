@@ -6,7 +6,7 @@ subtitle: "做世界上最好用的 Agent 系统 / Building the most usable agen
 
 profile:
   align: right
-  image: assets/img/figures/fig01-expect-vs-reality.png
+  image: figures/fig01-expect-vs-reality.png
   image_circular: false
   more_info: >
     <p><strong>Eukaryon Project</strong></p>
