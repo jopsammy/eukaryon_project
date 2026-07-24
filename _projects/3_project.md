@@ -8,9 +8,8 @@ category: work
 related_publications: true
 ---
 
-{% tabs %}
-
-{% tab 中文 %}
+{% tabs lh %}
+{% tab lh 中文 %}
 
 ### 长程实践理论
 
@@ -46,7 +45,7 @@ related_publications: true
 
 {% endtab %}
 
-{% tab English %}
+{% tab lh English %}
 
 ### Long-Horizon Practice Theory
 

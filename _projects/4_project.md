@@ -8,9 +8,8 @@ category: work
 related_publications: true
 ---
 
-{% tabs %}
-
-{% tab 中文 %}
+{% tabs ss %}
+{% tab ss 中文 %}
 
 ### 七系统源码调研
 
@@ -62,7 +61,7 @@ related_publications: true
 
 {% endtab %}
 
-{% tab English %}
+{% tab ss English %}
 
 ### Seven-System Source Code Survey
 

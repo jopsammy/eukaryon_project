@@ -8,9 +8,8 @@ category: work
 related_publications: true
 ---
 
-{% tabs %}
-
-{% tab 中文 %}
+{% tabs ac %}
+{% tab ac 中文 %}
 
 ### AC 范式 V6
 
@@ -50,7 +49,7 @@ AC 范式引入 `parallel-sub-agent` 机制，在关键分叉点同时拉起多�
 
 {% endtab %}
 
-{% tab English %}
+{% tab ac English %}
 
 ### AC Paradigm V6
 

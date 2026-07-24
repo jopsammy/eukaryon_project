@@ -8,8 +8,8 @@ category: work
 related_publications: true
 ---
 
-{% tabs %}
-{% tab 中文 %}
+{% tabs ea %}
+{% tab ea 中文 %}
 
 ### Eureka Agent
 
@@ -37,7 +37,7 @@ graph LR
 
 {% endtab %}
 
-{% tab English %}
+{% tab ea English %}
 
 ### Eureka Agent
 

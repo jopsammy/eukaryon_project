@@ -6,9 +6,8 @@ news: true
 related_posts: false
 ---
 
-{% tabs %}
-{% tab 中文 %}
-
+{% tabs join %}
+{% tab join 中文 %}
 ### 我们在找同行者
 
 我们相信，做出真正好用的 Agent 系统，不是一家公司或一个团队能独立完成的事。它需要跨学科的协作、开放的讨论，以及愿意深入实践的人。
@@ -27,7 +26,7 @@ related_posts: false
 
 Eukaryon Project 是一个开源、开放的项目。我们一起，做世界上最好用的 Agent 系统。
 {% endtab %}
-{% tab English %}
+{% tab join English %}
 
 ### We Are Looking for Companions
 
