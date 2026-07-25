@@ -175,9 +175,9 @@ nav_order: 2
   <!-- ===== 02 deploy-ac-v6 ===== -->
   <a class="eu-proj eu-proj--link" href="https://github.com/jopsammy/AC-skill-deploy-ac-v6-components" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
     <figure class="eu-proj__fig">
-      <img src="{{ '/assets/img/figures/fig04-v6-pipeline-zh.png' | relative_url }}" alt="AC 范式 V6 Pipeline" />
+      <img src="{{ '/assets/img/figures/fig04-v6-pipeline-zh.png' | relative_url }}" alt="AC 范式层次定位：三层结构与生态全景" />
       <figcaption class="eu-proj__figcap">
-        AC 范式 V6 架构 Pipeline——一键部署的核心资产
+        AC 范式 V6 层次定位——三层核心 + 全景路线图
       </figcaption>
     </figure>
     <div class="eu-proj__body">
