@@ -320,8 +320,8 @@ nav_order: 3
 
   <!-- ===== 收尾 ===== -->
   <div class="eu-rm__closing">
-    <p class="eu-rm__closing-cn">路线会演化，不会一次性设计——治理不是工程可选项，是结构必需品。当前处于阶段一 · 核移植，欢迎在 <a href="https://github.com/jopsammy/eukaryon_project" target="_blank" rel="noopener">GitHub</a> 上同行。</p>
-    <p class="eu-rm__closing-en">The route evolves; it is never designed in one shot — governance is not an engineering option but a structural necessity. We are in Phase 1. Join us on GitHub.</p>
+    <p class="eu-rm__closing-cn">世界上最好的 Agent，不会从随便一个 repo 里长出来。它会有一条被认真对待的路线，和一个不跳步的阶段一。我们从这里开始。</p>
+    <p class="eu-rm__closing-en">The world's best agent won't emerge from just another repo. It will have a route taken seriously — and a Phase 1 where no step is skipped. We start here.</p>
   </div>
 
 </div>
