@@ -92,11 +92,12 @@ latest_posts:
   <div class="eu-hero__kicker">Eukaryon Project</div>
   <h1 class="eu-hero__title">我们想做世界上<br>最好用的 Agent</h1>
   <p class="eu-hero__lead">
-    不是陪聊机器人 —— 我们要的是<b>劳动力</b>，是<b>同行者</b>
+    不是陪聊机器人，要的是<b>生产力</b>，是<b>同行者</b>
     <br>
     让智能真正干预现实、真正把事做成<br>
     我们相信 LLM 的潜力远未释放 —— <b>问题不在基座，在工程</b><br>
-    为此，我们在做 <b>Eureka Agent</b>，一个为真实长程实践而生的 agent 核
+    为此，我们在做 <b>Eureka Agent</b><br>一个为真实长程实践而生的 agent 核
+    <br>Coming soon...
   </p>
   <div class="eu-hero__fig">
     <img src="{{ '/assets/img/figures/fig01-expect-vs-reality-zh.png' | relative_url }}" alt="预期路径 vs 真实长程执行路径" />
@@ -110,11 +111,11 @@ latest_posts:
 <div class="eu-paths">
   <a class="eu-path" href="{{ '/research/' | relative_url }}">
     <div class="eu-path__h">research / 研究</div>
-    <div class="eu-path__d">长程实践理论 · AC 范式 V6 · 黑圣杯契约咒文</div>
+    <div class="eu-path__d">长程实践理论 · 本质</div>
   </a>
   <a class="eu-path" href="{{ '/projects/' | relative_url }}">
     <div class="eu-path__h">projects / 项目</div>
-    <div class="eu-path__d">Eureka Agent · AC 范式 V6 · 七系统源码调研</div>
+    <div class="eu-path__d">Eureka Agent · AC 范式 V6 （TRAE特调） · 从黑圣杯到令咒系统</div>
   </a>
   <a class="eu-path" href="{{ '/roadmap/' | relative_url }}">
     <div class="eu-path__h">roadmap / 路线</div>
