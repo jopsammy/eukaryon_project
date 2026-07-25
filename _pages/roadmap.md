@@ -211,6 +211,7 @@ nav_order: 3
   margin-top: 3rem;
   padding-top: 1.4rem;
   border-top: 1px solid rgba(128, 128, 128, 0.25);
+  text-align: center;
 }
 .eu-rm__closing-cn {
   font-size: 0.82rem;
@@ -323,8 +324,8 @@ nav_order: 3
 
   <!-- ===== 收尾 ===== -->
   <div class="eu-rm__closing">
-    <p class="eu-rm__closing-cn">世界上最好的 Agent，不会从随便一个 repo 里长出来。<br>它会有一条被认真对待的路线，和一个不跳步的阶段一。<br>我们从这里开始。</p>
-    <p class="eu-rm__closing-en">The world's best agent won't emerge from just another repo.<br>It has a route taken seriously, and a Phase 1 where no step is skipped.<br>We start here.</p>
+    <p class="eu-rm__closing-cn">世界上最好的 Agent，不会从随便一个 repo 里长出来<br>它会有一条被认真对待的路线，和一个不跳步的阶段一<br>我们从这里开始</p>
+    <p class="eu-rm__closing-en">The world's best agent won't emerge from just another repo<br>It has a route taken seriously, and a Phase 1 where no step is skipped<br>We start here</p>
   </div>
 
 </div>
