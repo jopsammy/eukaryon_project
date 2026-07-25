@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Eukaryon Cell · Eureka Agent 极简标识
+    —— 真核细胞横截面 ——
+
+    外膜 (cell membrane)  = 工程化边界，封装核心、与世界交互
+    内核 (nucleus)        = Agent 核，真核的决定性特征
+    缺口 (eureka gap)     = 突破点，核与现实的接口，"解除封印"
+    环隙 (cytoplasm)      = 工程空间，"问题不在基座，在工程"
+  -->
+  <circle cx="50" cy="50" r="39"
+          fill="none"
+          stroke="#b509ac"
+          stroke-width="4"
+          stroke-dasharray="220.54 24.5"
+          stroke-linecap="butt"/>
+  <circle cx="50" cy="50" r="22"
+          fill="#b509ac"/>
+</svg>
