@@ -153,9 +153,9 @@ nav_order: 2
   <!-- ===== 01 SpaceBasedAI ===== -->
   <a class="eu-proj eu-proj--link" href="https://github.com/jopsammy/SpaceBasedAIComputingFeasibilityAnalysis" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
     <figure class="eu-proj__fig">
-      <img src="{{ '/assets/img/projects/space-based-ai.png' | relative_url }}" alt="AC 组件全景图" />
+      <img src="{{ '/assets/img/projects/space-based-ai.png' | relative_url }}" alt="轨道 AI 数据中心：卫星概念与 10 年 TCO 11.8× 对比" />
       <figcaption class="eu-proj__figcap">
-        基于 AC 范式 V6 的全链路双语研究交付（LaTeX 论文 + Marp 幻灯片）
+        轨道 AI 数据中心——物理可行、工程脆弱、商业以场景分层
       </figcaption>
     </figure>
     <div class="eu-proj__body">
@@ -220,9 +220,9 @@ nav_order: 2
   <!-- ===== 04 readme-skill ===== -->
   <a class="eu-proj eu-proj--link" href="https://github.com/jopsammy/acp-traetune-readme-skill" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
     <figure class="eu-proj__fig">
-      <img src="{{ '/assets/img/projects/readme-skill.png' | relative_url }}" alt="三段非蕴含链" />
+      <img src="{{ '/assets/img/projects/readme-skill.png' | relative_url }}" alt="README 自动生成：深度扫描 → 人格识别 → 产品级 README" />
       <figcaption class="eu-proj__figcap">
-        从扫描到生成——非蕴含链同样适用于 README 自动化
+        深度扫描 → 理解项目人格 → 生成产品级 README——7 种人格 × 4 种视觉模式
       </figcaption>
     </figure>
     <div class="eu-proj__body">
