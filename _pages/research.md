@@ -224,8 +224,8 @@ nav_order: 1
     <figure class="eu-paper__fig">
       <img src="{{ '/assets/img/papers/ac-paradigm-components.png' | relative_url }}" alt="AC 范式组件全景" />
       <figcaption class="eu-paper__figcap">
-        锚点 · 契约 · 独立审查 · Subagent 对冲调度——AC 范式 V6 的核心组件<br>
-        Anchors · Contracts · Independent Review · Subagent hedging — the core components of AC Paradigm V6
+        AC 范式 V6（TRAE 特调）——长程实践的有效但不完美的工程实例<br>
+        AC Paradigm V6 (TRAE-Tuned) — a valid but imperfect engineering instance of long-horizon practice
       </figcaption>
     </figure>
     <div class="eu-paper__body">
