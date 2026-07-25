@@ -209,24 +209,27 @@ nav_order: 3
 /* --- 收尾 --- */
 .eu-rm__closing {
   margin-top: 3rem;
-  padding-top: 1.8rem;
+  padding-top: 1.4rem;
   border-top: 1px solid rgba(128, 128, 128, 0.25);
-  text-align: center;
 }
 .eu-rm__closing-cn {
-  font-size: 1.05rem;
-  font-weight: 700;
-  line-height: 1.7;
-  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.8;
+  opacity: 0.55;
+  margin: 0 0 0.6rem;
 }
 .eu-rm__closing-en {
-  font-size: 0.88rem;
+  font-size: 0.76rem;
   font-style: italic;
-  opacity: 0.6;
+  font-weight: 300;
+  line-height: 1.7;
+  opacity: 0.4;
   margin: 0;
 }
 .eu-rm__closing a {
   text-decoration: none;
+  opacity: 0.7;
 }
 
 @media (max-width: 720px) {
@@ -320,8 +323,8 @@ nav_order: 3
 
   <!-- ===== 收尾 ===== -->
   <div class="eu-rm__closing">
-    <p class="eu-rm__closing-cn">世界上最好的 Agent，不会从随便一个 repo 里长出来。它会有一条被认真对待的路线，和一个不跳步的阶段一。我们从这里开始。</p>
-    <p class="eu-rm__closing-en">The world's best agent won't emerge from just another repo. It will have a route taken seriously — and a Phase 1 where no step is skipped. We start here.</p>
+    <p class="eu-rm__closing-cn">世界上最好的 Agent，不会从随便一个 repo 里长出来。<br>它会有一条被认真对待的路线，和一个不跳步的阶段一。<br>我们从这里开始。</p>
+    <p class="eu-rm__closing-en">The world's best agent won't emerge from just another repo.<br>It has a route taken seriously, and a Phase 1 where no step is skipped.<br>We start here.</p>
   </div>
 
 </div>
