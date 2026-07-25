@@ -1,16 +1,30 @@
-<!DOCTYPE html> <html lang="zh"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Eureka Agent | Eukaryon Project </title> <meta name="author" content=" "> <meta name="description" content="Eureka Agent 运行时核 / The Eureka Agent Runtime Kernel"> <meta name="keywords" content="eukaryon, agent, long-horizon, AC paradigm, AI"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+<!DOCTYPE html> <html lang="zh"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Eureka Agent | Eukaryon Project </title> <meta name="author" content=" "> <meta name="description" content="从零构建的 Agent 运行时核，专为长程实践设计 / A from-scratch agent runtime kernel designed for long-horizon practice"> <meta name="keywords" content="eukaryon, agent, long-horizon, AC paradigm, AI"> <meta property="og:site_name" content="Eukaryon Project"> <meta property="og:type" content="website"> <meta property="og:title" content="Eukaryon Project | Eureka Agent"> <meta property="og:url" content="https://jopsammy.github.io/eukaryon_project/projects/1_project/"> <meta property="og:description" content="从零构建的 Agent 运行时核，专为长程实践设计 / A from-scratch agent runtime kernel designed for long-horizon practice"> <meta property="og:locale" content="zh"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="Eureka Agent"> <meta name="twitter:description" content="从零构建的 Agent 运行时核，专为长程实践设计 / A from-scratch agent runtime kernel designed for long-horizon practice"> <script type="application/ld+json">
+    {
+        "author":
+        {
+            "@type": "Person",
+            "name": " "
+        },
+        "url": "https://jopsammy.github.io/eukaryon_project/projects/1_project/",
+        "@type": "WebSite",
+        "description": "从零构建的 Agent 运行时核，专为长程实践设计 / A from-scratch agent runtime kernel designed for long-horizon practice",
+        "headline": "Eureka Agent",
+        
+        "sameAs": ["https://github.com/jopsammy"],
+        
+        "name": " ",
+        "@context": "https://schema.org"
+    }
+  </script> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
   :root {
     --max-content-width: 930px;
   }
-</style> <link rel="stylesheet" href="/eukaryon_project/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/eukaryon_project/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/eukaryon_project/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://jopsammy.github.io/eukaryon_project/projects/1_project/"> <script src="/eukaryon_project/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/eukaryon_project/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+</style> <link rel="stylesheet" href="/eukaryon_project/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,400,500,700|Noto+Sans+SC:300,400,500,700|Inter:300,400,500,700|Roboto+Slab:300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/eukaryon_project/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/eukaryon_project/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://jopsammy.github.io/eukaryon_project/projects/1_project/"> <script src="/eukaryon_project/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/eukaryon_project/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
     initTheme();
-  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/eukaryon_project/"> Eukaryon Project </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/eukaryon_project/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/eukaryon_project/publications/">publications / 论文 </a> </li> <li class="nav-item active"> <a class="nav-link" href="/eukaryon_project/projects/">projects / 项目 <span class="sr-only">(current)</span> </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Eureka Agent</h1> <p class="post-description">Eureka Agent 运行时核 / The Eureka Agent Runtime Kernel</p> </header> <article> <ul id="ea" class="tab" data-tab="fb73baf8-bbbf-4fbf-8876-ba084c613600" data-name="ea"> <li class="active" id="ea---"> <a href="#">中文 </a> </li> <li id="ea-english"> <a href="#">English </a> </li> </ul> <ul class="tab-content" id="fb73baf8-bbbf-4fbf-8876-ba084c613600" data-name="ea"> <li class="active"> <h3 id="eureka-agent">Eureka Agent</h3> <p><strong>使命</strong>：做世界上最好用的 Agent 系统。</p> <p>Eureka Agent 是一个从零构建的 Agent 运行时核，专门为长程实践设计。它的设计围绕三个核心原则：</p> <ol> <li> <strong>契约连续性</strong>：跨检查点的结构化状态传递，确保任务不会在切换上下文时断裂</li> <li> <strong>治理优先</strong>：内置权限闸门、检查点机制和机向人请示通道</li> <li> <strong>演化架构</strong>：支持从失败中学习和迭代，而非一次性设计</li> </ol> <h4 id="三阶段路线">三阶段路线</h4> <pre><code class="language-mermaid">graph LR
-    A[阶段一：核移植&lt;br/&gt;将 AC 范式 V6 能力&lt;br/&gt;移植为独立 Agent] --&gt; B[阶段二：解除封印&lt;br/&gt;突破 TRAE 平台接口限制&lt;br/&gt;释放完整能力]
-    B --&gt; C[阶段三：增强能力&lt;br/&gt;多 Agent 协作&lt;br/&gt;工具生态与自我进化]
-</code></pre> <p><strong>阶段一（当前）</strong>：将 AC 范式 V6 在 TRAE 上验证的工程能力移植为独立 Agent 运行时核。</p> <p><strong>阶段二</strong>：突破 TRAE IDE 的平台接口限制，实现独立进程管理、外部工具链集成和跨 session 状态持久化。</p> <p><strong>阶段三</strong>：多 Agent 协作框架、自省与自我进化能力、社区工具生态。</p> </li> <li> <h3 id="eureka-agent">Eureka Agent</h3> <p><strong>Mission</strong>: Building the most usable agent system.</p> <p>Eureka Agent is a from-scratch agent runtime kernel designed for long-horizon practice. Its design revolves around three core principles:</p> <ol> <li> <strong>Contract Continuity</strong>: Structured state handoff across checkpoints ensures tasks don’t break when switching contexts</li> <li> <strong>Governance First</strong>: Built-in permission gates, checkpoint mechanisms, and machine-to-human request channels</li> <li> <strong>Evolutionary Architecture</strong>: Learning and iterating from failures rather than one-shot design</li> </ol> <h4 id="three-phase-roadmap">Three-Phase Roadmap</h4> <pre><code class="language-mermaid">graph LR
-    A[Phase 1: Kernel Porting&lt;br/&gt;Port AC Paradigm V6&lt;br/&gt;to standalone Agent] --&gt; B[Phase 2: Unleashing&lt;br/&gt;Break through TRAE's&lt;br/&gt;platform constraints]
-    B --&gt; C[Phase 3: Enhancement&lt;br/&gt;Multi-agent collaboration&lt;br/&gt;Tool ecosystem &amp; self-evolution]
-</code></pre> <p><strong>Phase 1 (Current)</strong>: Port the engineering capabilities validated on TRAE under AC Paradigm V6 into a standalone agent runtime kernel.</p> <p><strong>Phase 2</strong>: Break free from TRAE IDE platform constraints—implement independent process management, external toolchain integration, and cross-session state persistence.</p> <p><strong>Phase 3</strong>: Multi-agent collaboration framework, introspection and self-evolution capabilities, community tool ecosystem.</p> </li> </ul> </article> <h2>References</h2> <div class="publications"> </div> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 . Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. © Eukaryon Project. </div> </footer> <script>
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/eukaryon_project/"> Eukaryon Project </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/eukaryon_project/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/eukaryon_project/research/">research / 研究 </a> </li> <li class="nav-item active"> <a class="nav-link" href="/eukaryon_project/projects/">projects / 项目 <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/eukaryon_project/roadmap/">roadmap / 路线 </a> </li> <li class="nav-item "> <a class="nav-link" href="/eukaryon_project/news/">news / 动态 </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Eureka Agent</h1> <p class="post-description">从零构建的 Agent 运行时核，专为长程实践设计 / A from-scratch agent runtime kernel designed for long-horizon practice</p> </header> <article> <blockquote> <p><strong>解决什么</strong>：为长程实践提供独立、可移植的 Agent 运行时核。 <strong>当前状态</strong>：阶段一核移植进行中。 <strong>入口</strong>：<a href="/eukaryon_project/roadmap/">roadmap / 路线</a> · <a href="https://github.com/jopsammy/eukaryon_project" rel="external nofollow noopener" target="_blank">GitHub</a></p> </blockquote> <h3 id="eureka-agent">Eureka Agent</h3> <p><strong>使命（Mission）</strong>：做世界上最好用的 Agent 系统（building the most usable agent system）。</p> <p>Eureka Agent 是一个从零构建的 Agent 运行时核（from-scratch agent runtime kernel），专为长程实践（long-horizon practice）设计。它的设计围绕三个核心原则（three core principles）：</p> <ol> <li> <strong>契约连续性（Contract Continuity）</strong>：跨检查点的结构化状态传递（structured state handoff across checkpoints），确保任务不会在切换上下文时断裂</li> <li> <strong>治理优先（Governance First）</strong>：内置权限闸门、检查点机制和机向人请示通道（built-in permission gates, checkpoint mechanisms, and machine-to-human request channels）</li> <li> <strong>演化架构（Evolutionary Architecture）</strong>：支持从失败中学习和迭代（learning and iterating from failures），而非一次性设计（not one-shot design）</li> </ol> <h4 id="三阶段路线three-phase-roadmap">三阶段路线（Three-Phase Roadmap）</h4> <pre><code class="language-mermaid">graph LR
+    A[阶段一：核移植&lt;br/&gt;Phase 1: Kernel Porting&lt;br/&gt;将 AC 范式 V6 能力&lt;br/&gt;移植为独立 Agent] --&gt; B[阶段二：解除封印&lt;br/&gt;Phase 2: Unleashing&lt;br/&gt;突破 TRAE 平台接口限制&lt;br/&gt;释放完整能力]
+    B --&gt; C[阶段三：增强能力&lt;br/&gt;Phase 3: Enhancement&lt;br/&gt;多 Agent 协作&lt;br/&gt;工具生态与自我进化]
+</code></pre> <p><strong>阶段一（当前，Phase 1 Current）</strong>：将 AC 范式 V6 在 TRAE 上验证的工程能力移植为独立 Agent 运行时核（port AC Paradigm V6 capabilities into a standalone kernel）。</p> <p><strong>阶段二（Phase 2）</strong>：突破 TRAE IDE 的平台接口限制（break through TRAE IDE platform constraints），实现独立进程管理、外部工具链集成和跨 session 状态持久化（independent process management, external toolchain integration, cross-session state persistence）。</p> <p><strong>阶段三（Phase 3）</strong>：多 Agent 协作框架、自省与自我进化能力、社区工具生态（multi-agent collaboration framework, introspection and self-evolution, community tool ecosystem）。</p> <p>完整路线展开见 <a href="/eukaryon_project/roadmap/">roadmap / 路线</a>。</p> </article> <h2>References</h2> <div class="publications"> </div> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 . © 2026 Eukaryon Project · <a href="https://github.com/jopsammy/eukaryon_project" rel="external nofollow noopener" target="_blank">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20470866" rel="external nofollow noopener" target="_blank">Zenodo DOI</a> </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
   };
@@ -28,19 +42,33 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/eukaryon_project/";
     },
-  },{id: "nav-publications-论文",
-          title: "publications / 论文",
+  },{id: "nav-research-研究",
+          title: "research / 研究",
           description: "Eukaryon Project 核心论文 / Core publications of the Eukaryon Project",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/eukaryon_project/publications/";
+            window.location.href = "/eukaryon_project/research/";
           },
         },{id: "nav-projects-项目",
           title: "projects / 项目",
-          description: "Eukaryon Project 的工程路线与核心组件 / Engineering roadmap and core components of the Eukaryon Project",
+          description: "Eukaryon Project 的核心组件与前置工作 / Core components and prior work of the Eukaryon Project",
           section: "Navigation",
           handler: () => {
             window.location.href = "/eukaryon_project/projects/";
+          },
+        },{id: "nav-roadmap-路线",
+          title: "roadmap / 路线",
+          description: "Eureka Agent 三阶段工程路线 / Three-phase engineering roadmap of the Eureka Agent",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/eukaryon_project/roadmap/";
+          },
+        },{id: "nav-news-动态",
+          title: "news / 动态",
+          description: "Eukaryon Project 的最新进展与公告 / Latest updates and announcements from Eukaryon Project",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/eukaryon_project/news/";
           },
         },{id: "news-eukaryon-project-官网正式上线-site-launch",
           title: 'Eukaryon Project 官网正式上线 / Site Launch',
@@ -59,22 +87,22 @@ ninja.data = [{
               window.location.href = "/eukaryon_project/news/announcement_3/";
             },},{id: "projects-eureka-agent",
           title: 'Eureka Agent',
-          description: "Eureka Agent 运行时核 / The Eureka Agent Runtime Kernel",
+          description: "从零构建的 Agent 运行时核，专为长程实践设计 / A from-scratch agent runtime kernel designed for long-horizon practice",
           section: "Projects",handler: () => {
               window.location.href = "/eukaryon_project/projects/1_project/";
             },},{id: "projects-ac-范式-v6",
           title: 'AC 范式 V6',
-          description: "锚点契约式人机协同工程范式 / Anchor-Contract Human-Machine Collaborative Engineering Paradigm",
+          description: "锚点契约式人机协同工程范式的首个完整工程化实例 / First complete engineering instance of the anchor-contract paradigm",
           section: "Projects",handler: () => {
               window.location.href = "/eukaryon_project/projects/2_project/";
             },},{id: "projects-长程实践理论",
           title: '长程实践理论',
-          description: "超越单次能力的结构下限理论 / Structural Lower Bounds Beyond Single-Step Capability",
+          description: "定义长程实践形式结构，建立三层结构下限体系 / Formal structure of long-horizon practice and three-layer lower-bound system",
           section: "Projects",handler: () => {
               window.location.href = "/eukaryon_project/projects/3_project/";
             },},{id: "projects-七系统源码调研",
           title: '七系统源码调研',
-          description: "主流开源 Agent 系统比较分析 / Comparative Analysis of Open-Source Agent Systems",
+          description: "七个主流开源 Agent 系统的源码级比较分析 / Source-code-level comparative analysis of seven mainstream open-source agent systems",
           section: "Projects",handler: () => {
               window.location.href = "/eukaryon_project/projects/4_project/";
             },},{
