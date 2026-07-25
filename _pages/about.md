@@ -90,17 +90,19 @@ latest_posts:
 
 <div class="eu-hero">
   <div class="eu-hero__kicker">Eukaryon Project</div>
-  <h1 class="eu-hero__title">我们想做世界上<br>最好用的 Agent。</h1>
+  <h1 class="eu-hero__title">我们想做世界上<br>最好用的 Agent</h1>
   <p class="eu-hero__lead">
-    不是陪聊机器人 —— 我们要的是<b>劳动力</b>，是<b>同行者</b>。<br>
-    让智能真正干预现实、真正把事做成。<br>
-    我们相信 LLM 的潜力远未释放 —— <b>问题不在基座，在工程</b>。
+    不是陪聊机器人 —— 我们要的是<b>劳动力</b>，是<b>同行者</b>
+    <br>
+    让智能真正干预现实、真正把事做成<br>
+    我们相信 LLM 的潜力远未释放 —— <b>问题不在基座，在工程</b><br>
+    为此，我们在做 <b>Eureka Agent</b>，一个为真实长程实践而生的 agent 核
   </p>
   <div class="eu-hero__fig">
     <img src="{{ '/assets/img/figures/fig01-expect-vs-reality-zh.png' | relative_url }}" alt="预期路径 vs 真实长程执行路径" />
     <div class="eu-hero__cap">
-      现实是：再强的基座，在真实长程任务里也会悄悄漂移到「假闭合」。<br>
-      我们要做的，就是补上那道缺口。
+      现实是：再强的基座，在真实长程任务里也会悄悄漂移到「假闭合」<br>
+      我们要做的，就是补上那道缺口
     </div>
   </div>
 </div>
@@ -121,5 +123,5 @@ latest_posts:
 </div>
 
 <div class="eu-join">
-  你也认同？欢迎加入 —— <a href="https://github.com/jopsammy/eukaryon_project">github.com/jopsammy/eukaryon_project</a>
+  你也认同？欢迎联系 —— <a href="mailto:jop.sammy@163.com">jop.sammy@163.com</a>
 </div>
