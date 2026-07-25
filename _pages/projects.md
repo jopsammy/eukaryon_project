@@ -2,7 +2,7 @@
 layout: page
 title: projects / 项目
 permalink: /projects/
-description: Eukaryon Project 的工程路线与核心组件 / Engineering roadmap and core components of the Eukaryon Project
+description: Eukaryon Project 的核心组件与前置工作 / Core components and prior work of the Eukaryon Project
 nav: true
 nav_order: 2
 horizontal: false

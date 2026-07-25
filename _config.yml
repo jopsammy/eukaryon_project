@@ -11,7 +11,7 @@ title: Eukaryon Project # the website title (if blank, full name will be used in
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Eukaryon Project——做世界上最好用的 Agent 系统。Building the most usable agent system for real-world long-horizon practice.
 footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. © Eukaryon Project.
+  © 2026 Eukaryon Project · <a href="https://github.com/jopsammy/eukaryon_project">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20470866">Zenodo DOI</a>
 keywords: eukaryon, agent, long-horizon, AC paradigm, AI # add your own keywords or leave empty
 lang: zh # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
@@ -29,17 +29,12 @@ back_to_top: true # set to false to disable the back to top button
 # repo color theme
 repo_theme_light: default # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
 repo_theme_dark: dark # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
-repo_trophies:
-  enabled: true
-  theme_light: flat # https://github.com/ryo-ma/github-profile-trophy
-  theme_dark: gitdimmed # https://github.com/ryo-ma/github-profile-trophy
 
 # External service URLs for repository page
-# To use a different instance or service for displaying GitHub stats and trophies,
+# To use a different instance or service for displaying GitHub stats,
 # update these URLs. These are used in the repository templates.
 external_services:
   github_readme_stats_url: https://github-readme-stats.vercel.app
-  github_profile_trophy_url: https://github-profile-trophy.vercel.app
 
 # -----------------------------------------------------------------------------
 # al-folio API (v1.x)
@@ -85,7 +80,7 @@ navbar_fixed: true
 footer_fixed: true
 search_enabled: true
 socials_in_search: true
-posts_in_search: true
+posts_in_search: false
 bib_search: true
 
 # Dimensions
@@ -96,8 +91,8 @@ max_width: 930px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
 og_image: # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
@@ -120,7 +115,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: 动态 # blog_name will be displayed in your blog page
+blog_name: news # used as the display title of the news/blog section
 blog_description: Eukaryon Project 的最新进展与公告 / Latest updates and announcements from Eukaryon Project
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
@@ -135,7 +130,9 @@ related_blog_posts:
 
 # Giscus comments (RECOMMENDED)
 # Follow instructions on https://giscus.app/ to setup for your repo to fill out the information below.
+# OB-1 用户裁决：本项目当前不启用 giscus；启用前请先填齐 repo/repo_id/category_id 并把 enabled 改回 true。
 giscus:
+  enabled: false
   repo: # <your-github-user-name>/<your-github-repo-name>
   repo_id: # leave empty or specify your repo_id (see https://giscus.app/)
   category: Comments # name of the category under which discussions will be created
@@ -149,9 +146,8 @@ giscus:
   emit_metadata: 0
   lang: en
 
-# Disqus comments (DEPRECATED)
-disqus_shortname: al-folio # put your disqus shortname
-# https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+# Disqus comments (DEPRECATED) — 已禁用，Eukaryon Project 不使用 Disqus。
+# disqus_shortname:
 
 # External sources.
 # If you have blog posts published on medium.com or other external sources,
@@ -173,15 +169,11 @@ newsletter:
 # -----------------------------------------------------------------------------
 
 collections:
-  books:
-    output: true
   news:
     defaults:
       layout: post
     output: true
   projects:
-    output: true
-  teachings:
     output: true
 
 # -----------------------------------------------------------------------------
@@ -220,7 +212,6 @@ exclude:
   - lighthouse_results/
   - package.json
   - package-lock.json
-  - _pages/about_einstein.md
   - purgecss.config.js
   - README.md
   - readme_preview/
@@ -318,8 +309,6 @@ jekyll-archives:
       year: "/blog/:year/"
       tags: "/blog/:type/:name/"
       categories: "/blog/:type/:name/"
-  books:
-    enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
 
 display_tags: [] # these tags will be displayed on the front page of your blog
 display_categories: [] # these categories will be displayed on the front page of your blog
@@ -519,7 +508,7 @@ third_party_libraries:
     version: "5.5.0"
   google_fonts:
     url:
-      fonts: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&display=swap"
+      fonts: "https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,400,500,700|Noto+Sans+SC:300,400,500,700|Inter:300,400,500,700|Roboto+Slab:300,400,500,700|Material+Icons&display=swap"
   highlightjs:
     integrity:
       css:
@@ -671,20 +660,5 @@ third_party_libraries:
 # Get external JSON data
 # -----------------------------------------------------------------------------
 
-jekyll_get_json:
-  - data: resume
-    json: assets/json/resume.json # it can also be an url
-
-jsonresume:
-  - basics
-  - work
-  - education
-  - publications
-  - projects
-  - volunteer
-  - awards
-  - certificates
-  - skills
-  - languages
-  - interests
-  - references
+# jekyll_get_json 块已移除（依赖的 assets/json/resume.json 在模板清理中删除）。
+# 如未来需恢复 json resume 展示，请重新提供资源文件并在此处登记 jekyll_get_json 项。

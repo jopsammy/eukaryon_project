@@ -6,23 +6,10 @@ news: true
 related_posts: false
 ---
 
-{% tabs launch %}
-{% tab launch 中文 %}
-经过长期的准备与建设，Eukaryon Project 官方网站今日正式上线。
+经过长期准备，Eukaryon Project 官方网站今日正式上线（the official website is now live）。
 
-本站承载了我们关于 Agent 系统的完整思考与工程实践——从长程实践理论到 AC 范式 V6 技术报告，再到 Eureka Agent 的三阶段路线规划。您可以在本站浏览我们的核心论文、了解工程路线，以及关注项目的最新动态。
+本站承载我们对 Agent 系统的完整思考（complete thinking）与工程实践（engineering practice）——从长程实践理论（long-horizon practice theory）到 AC 范式 V6 技术报告（AC Paradigm V6 technical report），再到 Eureka Agent 三阶段路线规划（three-phase roadmap）。您可以在本站浏览 [核心论文]({{ '/research/' | relative_url }})、了解 [工程路线]({{ '/roadmap/' | relative_url }})、关注 [项目动态]({{ '/news/' | relative_url }})。
 
-Eukaryon Project 的目标是：做世界上最好用的 Agent 系统。我们相信 LLM 的潜力远未在真实实践中被全面激发——问题不在基座，而在工程。
+Eukaryon Project 的目标：做世界上最好用的 Agent 系统。我们相信 LLM 的潜力在真实长程实践中远未被全面释放——问题不在基座模型，而在工程（the issue is not the foundation model, but the engineering）。
 
-欢迎关注，欢迎加入。
-{% endtab %}
-{% tab launch English %}
-After extensive preparation, the official website of the Eukaryon Project is now live.
-
-This site hosts our complete thinking and engineering practice on Agent systems—from Long-Horizon Practice Theory to the AC Paradigm V6 Technical Report, and the three-phase roadmap of Eureka Agent. You can explore our core publications, understand the engineering roadmap, and follow the latest project updates.
-
-The Eukaryon Project aims to build the most usable agent system. We believe the potential of LLMs in real-world practice has yet to be fully unleashed—the issue is not the foundation model, but the engineering.
-
-Stay tuned, and welcome to join us.
-{% endtab %}
-{% endtabs %}
+欢迎关注，欢迎加入（welcome，join us on [GitHub](https://github.com/jopsammy/eukaryon_project)）。
