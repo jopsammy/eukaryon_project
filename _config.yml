@@ -14,7 +14,7 @@ footer_text: >
   © 2026 Eukaryon Project · <a href="https://github.com/jopsammy/eukaryon_project">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20470866">Zenodo DOI</a>
 keywords: eukaryon, agent, long-horizon, AC paradigm, AI # add your own keywords or leave empty
 lang: zh # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: eureka_agent_logo.svg # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://jopsammy.github.io # the base hostname & protocol for your site
 baseurl: /eukaryon_project # the subpath of your site, e.g. /blog/. Leave blank for root
