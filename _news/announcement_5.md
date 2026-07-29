@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 论文发布 / Paper: AC 范式 V6 技术报告 / AC Paradigm V6 Technical Report — 锚点与契约的工程落地
+title: "论文发布 / Paper: AC 范式 V6 技术报告 / AC Paradigm V6 Technical Report — 锚点与契约的工程落地"
 date: 2026-05-31 12:00:00 +0800
 news: true
 related_posts: false

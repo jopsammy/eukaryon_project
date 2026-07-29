@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 论文发布 / Paper: 从黑圣杯到令咒系统 / From the Black Grail to the Command Spell System — Agent 治理边界
+title: "论文发布 / Paper: 从黑圣杯到令咒系统 / From the Black Grail to the Command Spell System — Agent 治理边界"
 date: 2026-07-24
 news: true
 related_posts: false

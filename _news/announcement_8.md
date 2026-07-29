@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 决策记录 / Decision: 真核原生固化 / Eukaryotic Hardening — EurekaAgent 路线定稿
+title: "决策记录 / Decision: 真核原生固化 / Eukaryotic Hardening — EurekaAgent 路线定稿"
 date: 2026-07-29
 news: true
 related_posts: false

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 论文发布 / Paper: 长程实践 / Long-Horizon Practice — 超越单次能力的结构下限
+title: "论文发布 / Paper: 长程实践 / Long-Horizon Practice — 超越单次能力的结构下限"
 date: 2026-05-31 00:00:00 +0800
 news: true
 related_posts: false
