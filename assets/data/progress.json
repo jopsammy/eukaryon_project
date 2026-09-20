@@ -1,0 +1,11 @@
+---
+layout: null
+permalink: /assets/data/progress.json
+---
+
+{%- comment -%}
+  构建期产物：把 _data/progress.json（唯一真相源）原样吐出为静态 JSON，
+  供 assets/js/progress-tree.js 运行时 fetch（R16 裁决口径）。
+  本文件不含手写内容——改数据只改 _data/progress.json。
+{%- endcomment -%}
+{{ site.data.progress | jsonify }}
