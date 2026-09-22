@@ -123,7 +123,7 @@ nav_order: 4
 
   <!-- ===== 数据截至徽章 ===== -->
   <div class="eu-pt__badge-row">
-    <span class="eu-pt__badge">数据截至 {{ site.data.progress.data_as_of }} · 人工快照，非实时</span>
+    <span class="eu-pt__badge">数据截至 {{ site.data.progress.data_as_of }}</span>
   </div>
 
   <!-- ===== 动效挂载点（Task 3 由 assets/js/progress-tree.js 接管渲染） ===== -->
