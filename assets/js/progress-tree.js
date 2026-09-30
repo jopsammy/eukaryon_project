@@ -13,8 +13,9 @@
  *     idem / popper / t-s5 等产生 22 对交叠，故改为确定性落位）
  *   - 支线的子支线（R28）：墙锚点可以是支线节点；波普尔之剑 = 一父墙 + 三子墙
  *     （剑骨架 / coding 域 / agent 域），子墙自父墙末节点扇开
- *   - 归并示意（R22）：confluence 声明（S3a/S3b → S4.5）渲染为空中汇流弧 +
- *     末端空心菱形印记，随 S4.5 碑生长显现——表达「残余连同原 S4 行统一归并」
+ *   - 关系弧（R22）：confluence 声明列表（如 S3a/S3b → S4.5 归并；F14 ← F13/S4.5
+ *     谱系承接）渲染为空中虚线弧 + 末端空心菱形印记，随各自目标节点生长显现——
+ *     表达节点之间的归属/承接关系
  *   - 几何语义：[V] 悬浮菱形印记 + 引线 / 当前断点赤色信标线（全页唯一赤）/
  *     未开始半高虚线 / 前夜墙暗色降饱和 / 不可判定半透明；节点立柱线已删（R20：
  *     地面投影即接地表达，不再叠加第二种链接语义）
@@ -29,7 +30,7 @@
  * 保留的既有机制：等轴测 2.5D 投影 / 真实日期序生长（▶/⏸/↺ + 滚动推进）/
  *   自适应拟合视野 + 悬停锚定聚焦镜头 / 舞台高度贴合视口 / L1 暖调深色背景 +
  *   屏幕空间漂浮立方块（唯一常驻循环层）/ 舞台级 pointermove 统一驱动 hover。
- *   播放节奏（R24/R31/R40/R41）：82000ms / 136 节点 ≈ 0.605s·节点⁻¹（第二轮 R1 认可节奏）。
+ *   播放节奏（R24/R31/R40/R41/R42）：90100ms / 149 节点 ≈ 0.605s·节点⁻¹（第二轮 R1 认可节奏）。
  *
  * 渲染路线：纯 SVG + 原生 JS，零依赖（沿用 D1/D5 样张）。
  * ========================================================================== */
@@ -90,7 +91,7 @@ window.ProgressTree = (function () {
   var WALL_DEFS = []; // 支线墙声明（求解器输入）
   var WALL_BY_KEY = {}; // 墙 key → 声明
   var NODE_WALL = {}; // 节点 id → {wall, j}（子墙锚点定位用）
-  var CONFLUENCE = null; // 归并声明（R22）：from 碑残余统一归并 to 碑
+  var CONFLUENCES = []; // 关系弧声明（R22）：{to, from[]} 列表——既可表达「残余归并主线」，也可表达「支线谱系承接」
   var ORDER = [];
 
   function visualStatus(n) {
@@ -195,13 +196,16 @@ window.ProgressTree = (function () {
       });
     });
 
-    // 归并声明（R22）：from 各碑的残余连同被取代的行统一归并 to 碑（如 S3a/S3b → S4.5）
-    if (raw.confluence && byId[raw.confluence.to]) {
-      var froms = (raw.confluence.from || []).filter(function (id) {
+    // 关系弧声明（R22）：confluence 为 {to, from[]} 列表；逐条校验 to 在 byId 中、
+    // from 逐项过滤掉不存在的 id，只保留 from 非空的条目
+    CONFLUENCES = [];
+    (Array.isArray(raw.confluence) ? raw.confluence : []).forEach(function (cf) {
+      if (!cf || !byId[cf.to]) return;
+      var froms = (cf.from || []).filter(function (id) {
         return !!byId[id];
       });
-      if (froms.length) CONFLUENCE = { to: raw.confluence.to, from: froms };
-    }
+      if (froms.length) CONFLUENCES.push({ to: cf.to, from: froms });
+    });
 
     // 全局生长序：date 升序（null 最后），同日按原始序 —— 禁止随机/同时淡入
     ORDER = NODES.slice()
@@ -702,19 +706,20 @@ window.ProgressTree = (function () {
     var tail = STELE_IDS.length - 1;
     var tp = trunkPos(tail);
     add(P(tp.X + RAIL_TAIL * SV2, tp.Z - RAIL_TAIL * SV2, 0, L.ang), 24);
-    // 归并汇流弧顶点余量（R22）：弧在碑顶连线上方上拱，需计入包围盒防裁剪
-    if (CONFLUENCE && L.nodes[CONFLUENCE.to]) {
-      var gT = L.nodes[CONFLUENCE.to];
+    // 关系弧顶点余量（R22）：弧在节点顶连线上方上拱，需计入包围盒防裁剪
+    CONFLUENCES.forEach(function (cf) {
+      if (!L.nodes[cf.to]) return;
+      var gT = L.nodes[cf.to];
       var topT = gT.kind === "stele" ? gT.mh + STELE_BASE_H : gT.H + gT.mh;
       var cT2 = P(gT.X, gT.Z, topT + 26, L.ang);
-      CONFLUENCE.from.forEach(function (fid) {
+      cf.from.forEach(function (fid) {
         var gf = L.nodes[fid];
         if (!gf) return;
         var topF = gf.kind === "stele" ? gf.mh + STELE_BASE_H : gf.H + gf.mh;
         var cF2 = P(gf.X, gf.Z, topF + 14, L.ang);
         add({ x: (cF2.x + cT2.x) / 2, y: (cF2.y + cT2.y) / 2 - 60 }, 26);
       });
-    }
+    });
     return { x0: x0, x1: x1, y0: y0, y1: y1 };
   }
 
@@ -1001,13 +1006,15 @@ window.ProgressTree = (function () {
       nodeElsById[n.id] = rec;
     });
 
-    // ---- 归并汇流弧（R22）：from 各碑顶 → to 碑顶的空中虚线弧，随 to 碑生长显现 ----
-    var mergeArcs = [];
-    if (CONFLUENCE && LAYOUT.nodes[CONFLUENCE.to]) {
-      var gTo = LAYOUT.nodes[CONFLUENCE.to];
+    // ---- 关系弧（R22）：from 各节点顶 → to 节点顶的空中虚线弧，随各自 to 节点生长显现 ----
+    var mergeGroups = [];
+    CONFLUENCES.forEach(function (cf) {
+      if (!LAYOUT.nodes[cf.to]) return;
+      var gTo = LAYOUT.nodes[cf.to];
       var topTo = gTo.kind === "stele" ? STELE_BASE_H + gTo.mh : gTo.H + gTo.mh;
       var cTo = P(gTo.X, gTo.Z, topTo + 26, ang);
-      CONFLUENCE.from.forEach(function (fid) {
+      var arcs = [];
+      cf.from.forEach(function (fid) {
         var gf = LAYOUT.nodes[fid];
         if (!gf) return;
         var topF = gf.kind === "stele" ? STELE_BASE_H + gf.mh : gf.H + gf.mh;
@@ -1032,9 +1039,9 @@ window.ProgressTree = (function () {
             cTo.y.toFixed(1),
         });
         layerMerge.appendChild(arcEl);
-        mergeArcs.push({ el: arcEl, to: CONFLUENCE.to });
+        arcs.push(arcEl);
       });
-      // 归并末端印记：一枚空心菱形（多弧同汇一点，印记只画一次）
+      // 关系弧末端印记：一枚空心菱形（多弧同汇一点，印记只画一次）
       var md = 5.5;
       var mkEl = mk("polygon", {
         class: "eu-ptx-merge-mark",
@@ -1043,8 +1050,8 @@ window.ProgressTree = (function () {
         transform: "translate(" + cTo.x.toFixed(1) + "," + (cTo.y + 9).toFixed(1) + ")",
       });
       layerMerge.appendChild(mkEl);
-      mergeArcs.mark = mkEl;
-    }
+      mergeGroups.push({ to: cf.to, arcs: arcs, mark: mkEl });
+    });
 
     buildL1(defs, layerFloor, layerGrid, ang); // L1：地面暖色光池 + 等轴测网格
 
@@ -1065,7 +1072,7 @@ window.ProgressTree = (function () {
       shadows: shadows,
       walls: walls,
       wallByKey: wallByKey,
-      mergeArcs: mergeArcs,
+      mergeGroups: mergeGroups,
       nodeEls: nodeEls,
       nodeElsById: nodeElsById,
     };
@@ -1165,13 +1172,15 @@ window.ProgressTree = (function () {
       w.front.parentNode.setAttribute("opacity", Math.min(1, e * 3) * (br.dim ? 0.55 : 1));
     });
 
-    // 归并汇流弧：随归并目标碑（to）的生长显现（R22）
-    if (DOM.mergeArcs && DOM.mergeArcs.length) {
-      var mo = (PROG[DOM.mergeArcs[0].to] || 0) * 0.9;
-      DOM.mergeArcs.forEach(function (m) {
-        m.el.setAttribute("opacity", mo.toFixed(3));
+    // 关系弧：每条随各自目标节点（to）的生长显现（R22）
+    if (DOM.mergeGroups && DOM.mergeGroups.length) {
+      DOM.mergeGroups.forEach(function (g) {
+        var mo = (PROG[g.to] || 0) * 0.9;
+        g.arcs.forEach(function (el) {
+          el.setAttribute("opacity", mo.toFixed(3));
+        });
+        if (g.mark) g.mark.setAttribute("opacity", mo.toFixed(3));
       });
-      if (DOM.mergeArcs.mark) DOM.mergeArcs.mark.setAttribute("opacity", mo.toFixed(3));
     }
 
     // 节点（R20：立柱线已删——地面投影即接地表达，不再有第二种链接语义）
@@ -1545,7 +1554,7 @@ window.ProgressTree = (function () {
    * ======================================================================== */
   var raf = null;
   var mode = "scroll"; // scroll（滚动驱动，默认） | playing（播放中） | manual（手动接管）
-  var PLAY_MS = 82000; // 单次完整生长约 82s（R24 → R31 → R40 → R41：节点数 76→119→126→136，保持 R1 认可的 ≈0.605s/节点）
+  var PLAY_MS = 90100; // 单次完整生长约 90s（R24 → R31 → R40 → R41 → R42：节点数 76→119→126→136→149，保持 R1 认可的 ≈0.605s/节点）
 
   function cancelRaf() {
     if (raf != null) cancelAnimationFrame(raf);
@@ -2061,7 +2070,7 @@ window.ProgressTree = (function () {
     ".eu-ptx-wallcap{fill:rgba(232,228,220,0.05);}",
     ".eu-ptx-walltop{fill:rgba(232,228,220,0.17);stroke:rgba(232,228,220,0.36);stroke-width:0.9;}",
     ".eu-ptx-wallrim{fill:none;stroke:rgba(232,228,220,0.74);stroke-width:1.4;}",
-    // 归并汇流弧（R22）：空中虚线弧 + 末端空心菱形印记（暗金中性，不与 [V]/赤色混淆）
+    // 关系弧（归并 / 谱系）（R22）：空中虚线弧 + 末端空心菱形印记（暗金中性，不与 [V]/赤色混淆）
     ".eu-ptx-merge{fill:none;stroke:rgba(206,186,152,0.42);stroke-width:1.1;stroke-dasharray:5 6;}",
     ".eu-ptx-merge-mark{fill:none;stroke:rgba(206,186,152,0.72);stroke-width:1.1;}",
     ".eu-ptx-cube{cursor:pointer;}",
@@ -2380,7 +2389,7 @@ window.ProgressTree = (function () {
    * 公开接口（E2E 取证 / 交互层在此之上扩展）
    * ======================================================================== */
   return {
-    VERSION: "1.3.1-structure",
+    VERSION: "1.4.0-structure",
     ready: function () {
       return booted;
     },
@@ -2415,7 +2424,11 @@ window.ProgressTree = (function () {
       });
     },
     confluence: function () {
-      return CONFLUENCE ? { to: CONFLUENCE.to, from: CONFLUENCE.from.slice() } : null;
+      return CONFLUENCES.length
+        ? CONFLUENCES.map(function (c) {
+            return { to: c.to, from: c.from.slice() };
+          })
+        : null;
     },
     getNode: function (id) {
       return byId[id] || null;
