@@ -27,10 +27,23 @@
  *   - 数据管线（R16）：运行时 fetch 构建期产物 /assets/data/progress.json
  *     （唯一真相源 _data/progress.json）；fetch/初始化失败 → 恢复 Liquid 静态降级清单
  *
- * 保留的既有机制：等轴测 2.5D 投影 / 真实日期序生长（▶/⏸/↺ + 滚动推进）/
+ * 保留的既有机制：等轴测 2.5D 投影 / 真实日期序生长（▶/⏸/⏭/↺ + 滚动推进）/
  *   自适应拟合视野 + 悬停锚定聚焦镜头 / 舞台高度贴合视口 / L1 暖调深色背景 +
  *   屏幕空间漂浮立方块（唯一常驻循环层）/ 舞台级 pointermove 统一驱动 hover。
- *   播放节奏（R24/R31/R40/R41/R42）：90100ms / 149 节点 ≈ 0.605s·节点⁻¹（第二轮 R1 认可节奏）。
+ *   播放节奏（R24 → R45）：整场 **78s**（`PLAY_MS`，R45 ② 定档，人类 2026-09-30 裁决
+ *   「90s 非硬约束，以效果与体验感优先」）；**R45 ② 起不再按「每节点等长」折算**——
+ *   由层级权重之和归一化（见模块段 5「节奏排程」）。
+ *   首帧起点（R43）：**刷新一律从第一个几何体开始** —— 初值恒 0，自动播放显式 play(0)；
+ *   不再用 scrollProgressTarget() 充当首帧初值（它在 scrollY=0 时恒算出 ≈0.5）。
+ *   直达终态（R44）：控件增设 ⏭「全局」——一键停帧在全量形态（progress=1），
+ *   读者无需看完约 78s 演出即可看全树；不改动其他进度通道（↺ 仍回到起点重播）。
+ *   生长序（R45）：由「全树扁平日期序」改为**结构单元化**——每块碑 / 每面墙各成一段
+ *   连续演出（段内按墙体声明序），段间按结构首节点日期，无日期结构紧跟其锚结构；
+ *   实测「墙长到一半跑去别处」8 次 → **0**、「子结构先于其锚」2 处 → **0**、
+ *   无日期节点集体沉底导致的结尾乱跳 → 消失（跨结构转场 40 → 31 = 结构数下限）。
+ *   节奏（R45 ②）：由「每格等长」改为**层级权重**（碑 2.4 / 门柱 1.8 / 关键分支 1.0 /
+ *   支线砌块 0.45 / 主干任务 0.15）+ **结构落定拍**（主干阶段之间用更短的拍，S 与 S
+ *   之间不墨迹）+ **轻微交叠 k=1.6**；总时长不变（仍 PLAY_MS，靠重分配）。
  *
  * 渲染路线：纯 SVG + 原生 JS，零依赖（沿用 D1/D5 样张）。
  * ========================================================================== */
@@ -207,18 +220,90 @@ window.ProgressTree = (function () {
       if (froms.length) CONFLUENCES.push({ to: cf.to, from: froms });
     });
 
-    // 全局生长序：date 升序（null 最后），同日按原始序 —— 禁止随机/同时淡入
-    ORDER = NODES.slice()
-      .sort(function (a, b) {
-        return sortKey(a) - sortKey(b);
-      })
-      .map(function (n) {
-        return n.id;
-      });
+    // 全局生长序（R45：结构单元化）—— 见 buildOrder()
+    ORDER = buildOrder();
   }
 
-  function sortKey(n) {
-    return (n.ts == null ? Infinity : n.ts) * 1e6 + n.idx;
+  /* 结构单元化生长序（R45）
+   * 旧法（R1–R44）= 全树扁平日期序 + 「无日期 → ∞」。两个可量化症状：
+   *   ① 同一面墙被日期切碎（实测 s45 切 4 段、f7 切 3 段、t-s3b/f9/f14 各 2 段）——
+   *      墙长到一半「跑掉」再回来，观感不成形；
+   *   ② 全树 11 个无日期节点（含主线末碑 S5 与 f14 未开节点）全部沉到演出末尾，
+   *      结尾一小段横跨整个画布乱跳（最大相邻跳变 1197 屏幕单位）。
+   * 新法：① 每块碑 / 每面墙各成一段**连续**演出，段内按墙体声明序（= 自锚点推向末端的
+   *   几何自然方向）；② 段间按该结构**首节点**的日期（时间叙事保住，只是讲在结构粒度）；
+   *   ③ 无日期的结构不参与全局排序，而是**紧跟其锚结构**（S5 紧跟 S4.5、t-s5 紧跟 S5）；
+   *   ④ 结构不得先于其锚（t-s3b 任务首节点 08-24 早于锚碑 08-31、prelude 前夜 05-29
+   *      早于 S0 —— 两者都收进各自锚的当日）；
+   *   ⑤ 同日之内的次序 = 脊线位次（碑 → 其内部任务墙成对推进），同日的支线排在主干之后。
+   * 仍然禁止随机缓动 / 同时淡入：全局只有一条确定性的先后链。
+   */
+  function buildOrder() {
+    var units = [];
+    var unitOfNode = {}; // 节点 id → 其所属单元（锚点定位用）
+    STELE_IDS.forEach(function (id, i) {
+      var u = { kind: "stele", ids: [id], anchorId: i > 0 ? STELE_IDS[i - 1] : null, decl: units.length, rank: i * 2 };
+      units.push(u);
+      unitOfNode[id] = u;
+    });
+    WALL_DEFS.forEach(function (w) {
+      var isTrunkTask = w.anchorIdx != null && !w.hasGate; // 主干内部任务墙（沿脊线另一侧）
+      var u = {
+        kind: "wall",
+        key: w.key,
+        ids: w.ids.slice(),
+        anchorId: w.anchorIdx != null ? STELE_IDS[w.anchorIdx] : w.anchorId,
+        decl: units.length,
+        rank: isTrunkTask ? w.anchorIdx * 2 + 1 : 10000,
+      };
+      units.push(u);
+      w.ids.forEach(function (id) {
+        unitOfNode[id] = u;
+      });
+    });
+    units.forEach(function (u) {
+      var first = isTrunkTaskUnit(u) ? null : byId[u.ids[0]];
+      u.ts = first && first.ts != null ? first.ts : null;
+    });
+    function isTrunkTaskUnit(u) {
+      return u.kind === "wall" && u.rank !== 10000;
+    }
+    // 定点迭代：① 无日期结构继承锚结构（+1ms）；② 锚序约束 —— 结构不得先于其锚。
+    // （前者覆盖 S5→S4.5、t-s5→S5；后者覆盖 t-s3b（其任务首节点 08-24 早于锚碑 S3b
+    //  的 08-31）与 prelude（前夜 05-29 早于 S0 的 08-05）——两者都收进各自锚的当日，
+    //  trunk 段位次保证「碑→其任务墙」仍成对。）
+    for (var pass = 0; pass < 40; pass++) {
+      var changed = false;
+      units.forEach(function (u) {
+        var anc = u.anchorId ? unitOfNode[u.anchorId] : null;
+        if (anc === u) anc = null;
+        var base;
+        if (u.ts != null) base = u.ts;
+        else if (anc && anc.eff != null && anc.eff !== Number.MAX_SAFE_INTEGER) base = anc.eff + 1;
+        else base = Number.MAX_SAFE_INTEGER;
+        if (anc && anc !== u && anc.eff != null && anc.eff !== Number.MAX_SAFE_INTEGER && base < anc.eff) base = anc.eff;
+        if (u.eff !== base) {
+          u.eff = base;
+          changed = true;
+        }
+      });
+      if (!changed) break;
+    }
+    // 日内排序：主干碑/其任务墙按脊线位次成对推进，同日的支线排在主干之后
+    var DAY = 86400000;
+    units.forEach(function (u) {
+      u.day = Math.floor(u.eff / DAY);
+    });
+    units.sort(function (a, b) {
+      return a.day - b.day || a.rank - b.rank || a.decl - b.decl;
+    });
+    var out = [];
+    units.forEach(function (u) {
+      u.ids.forEach(function (id) {
+        out.push(id);
+      });
+    });
+    return out;
   }
 
   /* ==========================================================================
@@ -1080,15 +1165,14 @@ window.ProgressTree = (function () {
     draw(progress);
   }
 
-  // 进度 p ∈ [0,1] → 按 date 升序依次生长（无随机缓动、无同时淡入）
+  // 进度 p ∈ [0,1] → 按结构单元化生长序依次展开（无随机缓动、无同时淡入）
   function draw(p) {
     if (!LAYOUT || !DOM) return;
     var ang = LAYOUT.ang;
     var N = ORDER.length;
-    var head = p * N;
     var i;
     for (i = 0; i < N; i++) {
-      PROG[ORDER[i]] = ease(clamp01(head - i));
+      PROG[ORDER[i]] = ease(rhyProgress(ORDER[i], p));
     }
 
     // 主干脊线轨道逐段铺开
@@ -1554,7 +1638,84 @@ window.ProgressTree = (function () {
    * ======================================================================== */
   var raf = null;
   var mode = "scroll"; // scroll（滚动驱动，默认） | playing（播放中） | manual（手动接管）
-  var PLAY_MS = 90100; // 单次完整生长约 90s（R24 → R31 → R40 → R41 → R42：节点数 76→119→126→136→149，保持 R1 认可的 ≈0.605s/节点）
+  var PLAY_MS = 78000; // 整场总时长（R45 ② 定档 **78s**；人类 2026-09-30：「90s 非硬约束，以效果与体验感优先」）。R45 起不再按「每节点等长」折算，而是层级权重之和的归一化——见下方节奏排程
+
+  /* ---- 节奏排程（R45 ②）：层级权重 + 结构落定拍 + 轻微交叠 ----
+   * 旧法（R1–R44）= 每格等长（PLAY_MS / N），且严格「一格停稳、下一格才起」——匀但不动人。
+   * 新法让动态本身承载层级信息：
+   *   ① 层级权重：主线碑 2.4（里程碑，最慢）> 支线门柱 1.8（开口的仪式感）>
+   *      主线关键分支 1.0 > 支线内砌块 0.45（一串快速铺开）> 主干内部任务 0.15（一笔带过）；
+   *   ② 结构落定拍：每个结构长完后停半拍再走下一个；**主干阶段之间用更短的拍**
+   *      （settleTrunk < settle）——S 与 S 之间保持紧凑，不墨迹；
+   *   ③ 轻微交叠 k=1.6：后一个在前一个走完约 1/k 时起身，任一时刻约 2–3 格同时在长。
+   * 总时长不变（仍 PLAY_MS——靠重分配而非拉长）；仍是确定性排程，无随机缓动；
+   * 只改「进度 → 时间」映射，不动出场次序（次序见 R45 ① 结构单元化）。
+   */
+  var RHY = { k: 1.6, settle: 0.5, settleTrunk: 0.08 };
+  var RHY_W = { stele: 2.4, gate: 1.8, key: 1.0, inner: 0.45, trunk: 0.15, other: 0.6 };
+  var SCHED = null;
+
+  function layerOf(id) {
+    var g = LAYOUT && LAYOUT.nodes[id];
+    var n = byId[id];
+    if (!g || !n) return "other";
+    if (g.kind === "stele") return "stele";
+    var w = WALL_BY_KEY[n.wallKey];
+    if (w && w.hasGate === false) return "trunk";
+    if (n.gate) return "gate";
+    if (n.innerSub) return "inner";
+    return "key";
+  }
+
+  function isTrunkLayer(k) {
+    return k === "stele" || k === "trunk";
+  }
+
+  function buildSchedule() {
+    var n = ORDER.length;
+    var i;
+    var w = new Array(n);
+    var wsum = 0;
+    for (i = 0; i < n; i++) {
+      w[i] = RHY_W[layerOf(ORDER[i])] || 1;
+      wsum += w[i];
+    }
+    var s = new Array(n);
+    var d = new Array(n);
+    var t = 0;
+    for (i = 0; i < n; i++) {
+      var slot = w[i] / wsum;
+      s[i] = t;
+      d[i] = slot * RHY.k;
+      t += slot; // 起点推进 = 本格槽位（结构边界再叠加落定拍，见下）
+      if (i + 1 < n) {
+        var cur = ORDER[i];
+        var nxt = ORDER[i + 1];
+        if ((byId[cur].wallKey || "\u0000s:" + cur) !== (byId[nxt].wallKey || "\u0000s:" + nxt)) {
+          var trunkPair = isTrunkLayer(layerOf(cur)) && isTrunkLayer(layerOf(nxt));
+          t += (trunkPair ? RHY.settleTrunk : RHY.settle) / wsum;
+        }
+      }
+    }
+    var total = 0;
+    for (i = 0; i < n; i++) total = Math.max(total, s[i] + d[i]);
+    var map = {};
+    var per = { stele: [], gate: [], key: [], inner: [], trunk: [], other: [] };
+    for (i = 0; i < n; i++) {
+      var lk = layerOf(ORDER[i]);
+      map[ORDER[i]] = { s: s[i] / total, d: d[i] / total };
+      if (per[lk]) per[lk].push(d[i] / total);
+    }
+    return { map: map, per: per };
+  }
+
+  // 节点 id + 全局进度 p → 该节点自身的生长进度 [0,1]（节奏排程的全部实现）
+  function rhyProgress(id, p) {
+    if (!SCHED) SCHED = buildSchedule();
+    var e = SCHED.map[id];
+    if (!e) return 0;
+    return clamp01((p - e.s) / (e.d > 1e-9 ? e.d : 1e-9));
+  }
 
   function cancelRaf() {
     if (raf != null) cancelAnimationFrame(raf);
@@ -1569,10 +1730,13 @@ window.ProgressTree = (function () {
     draw(p);
   }
 
-  function play() {
+  // R43：play 支持显式起点（fromOverride）。**首次自动播放必须传 0** ——
+  // 刷新路径不得继承任何既有进度，否则页面可滚动时初值被写成 ≈0.5，
+  // 观感即「刷新后演示动画从中间开始」（而 ↺/reset 因前置 draw(0) 表现正常）。
+  function play(fromOverride) {
     cancelRaf();
-    var from = progress >= 0.999 ? 0 : progress;
-    if (from > 0 && progress >= 0.999) draw(0);
+    var from = fromOverride != null ? clamp01(fromOverride) : progress >= 0.999 ? 0 : progress;
+    if (from === 0 && progress !== 0) draw(0); // 起播前先归零（首次自动播放 / 播完重播）
     mode = "playing";
     var t0 = performance.now();
     var step = function (now) {
@@ -2030,7 +2194,7 @@ window.ProgressTree = (function () {
     "radial-gradient(124% 94% at 50% 44%,transparent 28%,rgba(7,6,4,0.13) 56%,rgba(7,6,4,0.36) 80%,rgba(7,6,4,0.62) 100%);}",
     // L2 主体层
     ".eu-ptx__svg{position:absolute;left:0;top:0;width:100%;height:100%;z-index:3;display:block;}",
-    // 内嵌极简控件：两枚图标按钮叠在画布右上角
+    // 内嵌极简控件：三枚图标按钮叠在画布右上角（▶/⏸ · ↺ · ⏭）
     ".eu-ptx__ctl{position:absolute;top:10px;right:10px;z-index:8;display:flex;gap:6px;opacity:0.45;transition:opacity .15s ease;}",
     ".eu-ptx__ctl:hover{opacity:1;}",
     ".eu-ptx__ctl button{width:30px;height:30px;padding:0;background:rgba(18,16,11,0.72);color:#e8e4dc;",
@@ -2279,12 +2443,19 @@ window.ProgressTree = (function () {
     btnReplay.textContent = "↺";
     btnReplay.title = "重播";
     btnReplay.setAttribute("aria-label", "重播");
+    // R44：直达终态（全局）——一键停帧在全量形态，读者不必看完约 78s 演出
+    var btnEnd = document.createElement("button");
+    btnEnd.type = "button";
+    btnEnd.textContent = "⏭";
+    btnEnd.title = "直达终态（全局）";
+    btnEnd.setAttribute("aria-label", "直达终态（全局）");
     ctl.appendChild(btnPlay);
     ctl.appendChild(btnReplay);
+    ctl.appendChild(btnEnd);
     stage.appendChild(ctl);
     wrap.appendChild(stage);
     host.appendChild(wrap);
-    ui = { btnPlay: btnPlay };
+    ui = { btnPlay: btnPlay, btnEnd: btnEnd };
 
     initInteract(); // L3：锚定 #progress-tooltip / #progress-detail，挂全局收起监听
     // 初始化成功：先隐藏 Liquid 静态降级清单（JS 失败时它保持可见）——
@@ -2310,6 +2481,12 @@ window.ProgressTree = (function () {
       draw(0);
       play();
       btnPlay.textContent = "⏸";
+    });
+    // R44：⏭ 直达终态（全局）。走 setProgress（内部 cancelRaf）+ manual 模式：
+    // 既停掉播放，也不再被滚动驱动改写；▶ 随之复位为可重播态。
+    btnEnd.addEventListener("click", function () {
+      setProgress(1, "manual");
+      btnPlay.textContent = "▶";
     });
 
     // 滚动推进（被动监听；仅 scroll 模式且进度变化时重绘）
@@ -2345,14 +2522,19 @@ window.ProgressTree = (function () {
       }, ms);
     });
 
-    // 初始进度（R25）：页面可滚动时按滚动位置起播（滚动叙事）；
-    // 无滚动条页面保持 0 —— scrollProgressTarget 恒 ≈0.5，不能作为初值
-    if (pageCanScroll()) syncFromScroll(true);
-    // 打开页面自动生长：舞台高度贴合视口后本页无滚动条，scroll 驱动到不了 1，
-    // 日期序靠后的支线节点将永不出现（用户目视即「支线没了」）→ 自动播放补全，⏸ 可打断
+    // 初始进度（R43）：**一律 0** —— 刷新必须从第一个几何体开始生长。
+    // 历史教训（R25 → 复发）：R25 用 `if (pageCanScroll()) syncFromScroll(true)` 取初值，
+    // 但 `pageCanScroll()` 只是**一次布局快照**；页面一旦（哪怕略）高于视口——窄视口下
+    // stage 被 STAGE_MIN_H 钳住、页脚/导航折行/浏览器缩放/字体迟到 reflow 等——它即为
+    // true，而 `scrollProgressTarget()` 在 scrollY=0 时恒算出 ≈0.5（其零点为 stageTop≈0.88vh，
+    // 而贴合视口后 stageTop≈0.3vh），于是初值被写成 ≈0.5，600ms 后的自动播放再从此续播
+    // → 观感「刷新后从中间开始」。修法 = 初值不参与；自动播放显式 `play(0)`。
+    // 滚动叙事仍保留（scroll/resize 监听中的 syncFromScroll 不变），只是不再充当首帧初值。
+    // 打开页面自动生长：scroll 驱动到不了 1，日期序靠后的支线节点将永不出现
+    // （用户目视即「支线没了」）→ 自动播放补全，⏸ 可打断；起点显式传 0。
     setTimeout(function () {
       if (mode === "scroll") {
-        play();
+        play(0);
         if (ui.btnPlay) ui.btnPlay.textContent = "⏸";
       }
     }, 600);
@@ -2389,7 +2571,7 @@ window.ProgressTree = (function () {
    * 公开接口（E2E 取证 / 交互层在此之上扩展）
    * ======================================================================== */
   return {
-    VERSION: "1.4.0-structure",
+    VERSION: "1.7.2-structure",
     ready: function () {
       return booted;
     },
@@ -2496,6 +2678,25 @@ window.ProgressTree = (function () {
     play: play,
     pause: pause,
     reset: reset,
+    // 节奏排程只读视图（R45 ②）：取证用——层级样本时长 / 相邻弧隙 / 逐节点 {s,d}
+    rhythm: function () {
+      if (!LAYOUT) return null;
+      if (!SCHED) SCHED = buildSchedule();
+      var out = {
+        k: RHY.k,
+        settle: RHY.settle,
+        settleTrunk: RHY.settleTrunk,
+        ms: PLAY_MS,
+        weights: RHY_W,
+        per: {},
+        map: SCHED.map,
+      };
+      Object.keys(SCHED.per).forEach(function (k) {
+        var a = SCHED.per[k];
+        out.per[k] = { n: a.length, d: a.length ? a[0] : null };
+      });
+      return out;
+    },
     on: on,
     off: off,
     // 重建布局并重绘当前进度（方位角重新求解）
