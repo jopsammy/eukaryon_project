@@ -2571,7 +2571,7 @@ window.ProgressTree = (function () {
    * 公开接口（E2E 取证 / 交互层在此之上扩展）
    * ======================================================================== */
   return {
-    VERSION: "1.7.2-structure",
+    VERSION: "1.7.3-structure",
     ready: function () {
       return booted;
     },
