@@ -701,7 +701,23 @@ window.ProgressTree = (function () {
             x.uShift = 0;
             x.anchorPos = anchorPos;
           });
-          var assign = assignChildPsi(sibs, nw.wall, placed, ang);
+          // R49：子墙 fixedPsi 支持（与主线锚墙同语义——方位角钉死，不进联合分配）。
+          // 带 fixedPsi 的兄弟直接落位，并作为已落位障碍参与其余兄弟的联合分配；
+          // 避免锚点饱和（如 S45-T18 已有 f14/purify6 两面长墙）时，联合分配把
+          // 既有长墙重排挤角。动机：F16~F21 六条同层级支线须自 T18 分叉（人类裁决）。
+          var fixedSibs = sibs.filter(function (x) {
+            return x.fixedPsi != null;
+          });
+          fixedSibs.forEach(function (x) {
+            x.psi = x.fixedPsi;
+          });
+          var freeSibs = sibs.filter(function (x) {
+            return x.fixedPsi == null;
+          });
+          var assign = freeSibs.length ? assignChildPsi(freeSibs, nw.wall, placed.concat(fixedSibs), ang) : {};
+          fixedSibs.forEach(function (x) {
+            assign[x.key] = x.fixedPsi;
+          });
           sibs.forEach(function (x) {
             x.psi = assign[x.key];
           });
@@ -2571,7 +2587,7 @@ window.ProgressTree = (function () {
    * 公开接口（E2E 取证 / 交互层在此之上扩展）
    * ======================================================================== */
   return {
-    VERSION: "1.7.3-structure",
+    VERSION: "1.8.0-structure",
     ready: function () {
       return booted;
     },
