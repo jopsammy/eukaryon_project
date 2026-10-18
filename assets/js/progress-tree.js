@@ -26,6 +26,8 @@
  *     留白分区；抽屉打开期间镜头锁定特写该节点，关闭后释放
  *   - 数据管线（R16）：运行时 fetch 构建期产物 /assets/data/progress.json
  *     （唯一真相源 _data/progress.json）；fetch/初始化失败 → 恢复 Liquid 静态降级清单
+ *   - R52（2026-10-18）：主线间距解耦（S4.5 → S5 额外 600，最后一波收尾支线群成为独立
+ *     「收尾岛」）；S5 四支线展开批次节点；「数据截至」后加一行低对比波次小字（wave_legend）
  *
  * 保留的既有机制：等轴测 2.5D 投影 / 真实日期序生长（▶/⏸/⏭/↺ + 滚动推进）/
  *   自适应拟合视野 + 悬停锚定聚焦镜头 / 舞台高度贴合视口 / L1 暖调深色背景 +
@@ -65,6 +67,9 @@ window.ProgressTree = (function () {
 
   // 场景常量（D5 样张形态）
   var TRUNK_SPACING = 150; // 主线碑间距（地面单位，等距排布）
+  // R52：S4.5 → S5 额外拉开 900，让最后一波收尾支线群成为独立「收尾岛」，
+  // 同时避开 S4.5 长支线（f7/f9 等）伸到 S5 前沿的胶囊交叠
+  var TRUNK_GAP_AFTER = { "S4.5": 600 };
   var H_BASE = 26; // 支线节点最低高度
   var WALL_STEP = 74; // 支线相邻节点默认间距（墙可用 step 覆盖）
   var WALL_FRONT = 26; // 节点串沿"朝观众"方向前移量
@@ -367,7 +372,9 @@ window.ProgressTree = (function () {
    *      ③ 胶囊（墙身底边 + 顶边两条屏幕线段 + 半径）碰撞松弛（保序、保扇面边界）。
    * ======================================================================== */
   function trunkPos(i) {
-    var s = i * TRUNK_SPACING;
+    // R52：主线碑间距可按「碑后额外间距」解耦（当前仅 S4.5 → S5 拉 600）
+    var s = 0;
+    for (var k = 0; k < i; k++) s += TRUNK_SPACING + (TRUNK_GAP_AFTER[STELE_IDS[k]] || 0);
     return { X: s * SV2, Z: -s * SV2 };
   }
 
@@ -1525,20 +1532,25 @@ window.ProgressTree = (function () {
     return { x: cx - w / 2, y: cy - h / 2, w: w, h: h };
   }
 
-  // 生长拟合目标：已生长节点（含下一个将生长节点的前瞻）当前屏幕位置的包围盒，
+  // 生长拟合目标：**实际已生长节点**（PROG>0）当前屏幕位置的包围盒，
   // 外扩 FIT_PAD 并兜底最小局部视野尺寸。
+  // R52 镜头修复：旧法按 `p*N` 的均匀前缀取节点，与 R45 节奏分层后的真实生长序不一致——
+  // S3a→S3b 段节点已按节奏长出，但均匀前缀还没轮到它们，镜头因此停在旧区域，
+  // 右侧节点溢出画面直到前缀追上。改为以 PROG>0 的实际已生长集合为准，
+  // 保证任何时刻所有已出现节点都在视野内、镜头居中跟随。
   function fitTarget(p) {
     var N = ORDER.length;
-    var upto = Math.min(N, Math.floor(p * N) + 1); // 前瞻：纳入下一个将生长的节点
     var x0 = 1e9;
     var y0 = 1e9;
     var x1 = -1e9;
     var y1 = -1e9;
     var found = false;
-    for (var i = 0; i < upto; i++) {
-      var g = LAYOUT.nodes[ORDER[i]];
+    for (var i = 0; i < N; i++) {
+      var id = ORDER[i];
+      var e = PROG[id] || 0;
+      if (e <= 0) continue; // 未开始生长的不纳入（避免把未来支线提前拉进镜头）
+      var g = LAYOUT.nodes[id];
       if (!g) continue;
-      var e = PROG[ORDER[i]] || 0;
       var y0v = g.kind === "stele" ? 0 : g.H * e;
       var cur = P(g.X, g.Z, y0v, LAYOUT.ang);
       x0 = Math.min(x0, cur.x);
@@ -2361,6 +2373,8 @@ window.ProgressTree = (function () {
     // ⑨ 页脚功能字段
     ".eu-dt__foot{margin-top:1.8rem;padding-top:0.9rem;border-top:1px solid rgba(232,228,220,0.1);",
     "font-size:0.68rem;letter-spacing:0.06em;opacity:0.42;}",
+    // R52 波次小字：跟在「数据截至」徽章后，低对比一行，不做框
+    ".eu-pt__wave-note{display:inline-block;margin-left:0.75rem;font-size:0.72rem;letter-spacing:0.02em;opacity:0.42;vertical-align:0.1em;}",
   ].join("\n");
 
   var STAGE_MIN_H = 300; // 舞台高度下限（低于此值画面太小，宁可让页面出现滚动条）
@@ -2422,6 +2436,25 @@ window.ProgressTree = (function () {
     draw(progress);
   }
 
+  // R52 波次小字：跟在「数据截至」徽章后，低对比一行；不参与树几何、不做框
+  function mountWaveNote(raw) {
+    var wl = raw && raw.wave_legend;
+    if (!wl || !wl.waves || !wl.waves.length) return;
+    var row = document.querySelector(".eu-pt__badge-row");
+    if (!row || row.querySelector(".eu-pt__wave-note")) return;
+    var note = document.createElement("span");
+    note.className = "eu-pt__wave-note";
+    note.textContent =
+      (wl.title || "波次") +
+      "：" +
+      wl.waves
+        .map(function (w) {
+          return w.id + " " + (w.label || "");
+        })
+        .join(" · ");
+    row.appendChild(note);
+  }
+
   function init(host, raw) {
     loadData(raw);
     if (!NODES.length || !STELE_IDS.length) throw new Error("progress 数据为空或缺少主线碑");
@@ -2469,6 +2502,7 @@ window.ProgressTree = (function () {
     ctl.appendChild(btnReplay);
     ctl.appendChild(btnEnd);
     stage.appendChild(ctl);
+    mountWaveNote(raw);
     wrap.appendChild(stage);
     host.appendChild(wrap);
     ui = { btnPlay: btnPlay, btnEnd: btnEnd };
@@ -2587,7 +2621,7 @@ window.ProgressTree = (function () {
    * 公开接口（E2E 取证 / 交互层在此之上扩展）
    * ======================================================================== */
   return {
-    VERSION: "1.10.0-structure",
+    VERSION: "1.11.1-structure",
     ready: function () {
       return booted;
     },
