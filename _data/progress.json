@@ -1,5 +1,5 @@
 {
-  "data_as_of": "2026-11-01",
+  "data_as_of": "2026-11-16",
   "steles": ["S0", "S1", "S2", "S2-b", "S3a", "S3b", "S4.5", "S5"],
   "confluence": [
     {
@@ -580,6 +580,60 @@
       "front": 0,
       "fixedPsi": 310,
       "nodes": ["F37", "F37-W15", "F37-UI", "F37-H14", "F37-SYS"]
+    },
+    {
+      "key": "f701",
+      "anchor": "S5-E",
+      "name": "追加 · f701 新核 eureka prokaryon",
+      "climb": 20,
+      "step": 40,
+      "u0": 900,
+      "front": 0,
+      "fixedPsi": 350,
+      "nodes": ["F701", "F701-E0", "F701-E2", "F701-FULL", "F701-V6"]
+    },
+    {
+      "key": "f701a",
+      "anchor": "F701-V6",
+      "name": "f701-a · 定形面收尾程序",
+      "climb": 14,
+      "step": 36,
+      "u0": 160,
+      "front": 0,
+      "nodes": ["F701A-P0", "F701A-MB", "F701A-TX", "F701A-BP", "F701A-IS", "F701A-CL"]
+    },
+    {
+      "key": "f38",
+      "anchor": "S5-E",
+      "name": "追加 · f38 崔判官系统",
+      "climb": 14,
+      "step": 32,
+      "u0": 900,
+      "front": 0,
+      "fixedPsi": 30,
+      "nodes": ["F38", "F38-T1", "F38-U", "F38-R2"]
+    },
+    {
+      "key": "f39",
+      "anchor": "S5-E",
+      "name": "追加 · f39 统一终止语义",
+      "climb": 14,
+      "step": 32,
+      "u0": 900,
+      "front": 0,
+      "fixedPsi": 60,
+      "nodes": ["F39", "F39-P0", "F39-W0", "F39-W1"]
+    },
+    {
+      "key": "f40",
+      "anchor": "S5-E",
+      "name": "追加 · f40 测试入口适配器",
+      "climb": 14,
+      "step": 36,
+      "u0": 900,
+      "front": 0,
+      "fixedPsi": 90,
+      "nodes": ["F40", "F40-ADP", "F40-R2", "F40-CL"]
     }
   ],
   "nodes": [
@@ -1313,14 +1367,14 @@
       "id": "S5",
       "parent": "S4.5",
       "lane": "主干",
-      "date": "2026-11-01",
+      "date": "2026-11-16",
       "status": "进行中",
       "label": "S5 收尾（波次 v9 拓扑调优）",
       "gist": "解门已闭；批#2 后双车道已开，条件/审计闭合分开记。",
       "story": {
         "why": "S4.5（=MVP-1）闭合后 eureka 在机制上已基本完备，但离「符合意图、舒适的第一个发布版本」还有最后一程：全谱融汇、规划体系、档位开关、集群可视化、能力融汇、品牌身份都要收敛成型。",
         "what": "原 9 支线（f23~f31）× 四波次执行；执行中出现 f33~f37 追加/计划外支线（技能清收、卡死守卫、行为音效、核独立看护、锚点记账），2026-11-01 以 v9 拓扑调优重排波次：W0 解门 → W1 双车道（M：f26→f28；P：f25→f29；收尾：f27/f34/f36/f37）→ W2 收口坐签 → W3 总门。",
-        "result": "2026-10-21 W1 主线条件闭合：f24 条件闭合 / f30 已闭合 / f31 审计闭合 / f33 已闭合；f27 移交收尾车道；f35 B0 设计闭。2026-11-01 v9 裁决落地 + 批#1 全 A；批#2 后 V3 直接授权落 public 1.1.0，W1 双车道开跑（f26/f28 M 车道实装中；f25/f29 P 车道派发登记已出、执行未落）；f27 CP-V 拆分、f34 root-auto 登记不可判定、f36 T3 P0-2 追认。W1-PLAN 台账仍记未启动（无 task_id/产物），故 f25/f29 按未开始记。"
+        "result": "2026-10-21 W1 主线条件闭合：f24 条件闭合 / f30 已闭合 / f31 审计闭合 / f33 已闭合；f27 移交收尾车道；f35 B0 设计闭。2026-11-01 v9 裁决落地 + 批#1 全 A；批#2 后 V3 直接授权落 public 1.1.0，W1 双车道开跑（f26/f28 M 车道实装中；f25/f29 P 车道派发登记已出、执行未落）；f27 CP-V 拆分、f34 root-auto 登记不可判定、f36 T3 P0-2 追认。W1-PLAN 台账仍记未启动（无 task_id/产物），故 f25/f29 按未开始记。 2026-11-16：新核 f701 及其收尾程序 f701-a 成为 11 月主线；治理侧新增 f38 崔判官 / f39 统一终止 / f40 测试适配器；W1 仍在飞，W2/W3 未开。S5 未闭合。"
       },
       "tasks": [
         ["W0 f23 AC 范式全谱融汇迁移（基座）", "已闭合"],
@@ -1332,7 +1386,9 @@
         ["追加 f33 上游技能清收（已闭合）", "已闭合"],
         ["追加 f34 卡死守卫 / f35 音效 / f36 核看护 / f37 锚点记账", "进行中"],
         ["v9 W1 双车道（M：f26→f28；P：f25→f29）", "进行中"],
-        ["v9 W2 收口坐签 / W3 总门", "未开始"]
+        ["v9 W2 收口坐签 / W3 总门", "未开始"],
+        ["追加 f38 崔判官 / f39 统一终止 / f40 测试适配器", "进行中"],
+        ["追加 f701 新核 + f701-a 收尾程序", "进行中"]
       ],
       "detail": "S5 = 仅机制完备的收尾（可分发打包/发行版不在本阶段，人类裁决⑬）；执行模型 = 人类指挥单一主线、按波次委派（裁决㉓）。madoka 抽象定义（罩着 eureka 的一切）随规划冻结，f26 承载其实装。v9 拓扑（2026-11-01，D1~D6=A）supersede 原 W0~W3 波次编排；C1 的 9 支集合不变，追加支线按并行/收尾车道处理。",
       "links": [".trae/specs/s5-finalization/spec.md", ".trae/specs/s5-finalization/topology.md"],
@@ -1366,14 +1422,14 @@
       "id": "S5-E",
       "parent": "S5-RA",
       "lane": "主干",
-      "date": "2026-11-01",
+      "date": "2026-11-16",
       "status": "进行中",
-      "label": "S5 执行 · v9 双车道（W1 已启动）",
-      "gist": "批#2 后双车道已开：V3 已签发，M/P 两路在飞。",
+      "label": "S5 执行 · W1 续推（新核 + 治理支线）",
+      "gist": "11 月主线 = 新核与收尾程序；治理三支线并行。",
       "story": {
         "why": "蓝图既定，剩下的就是按波次把牌打完——但执行中暴露原波次假设失效（f27 移出 W1、追加支线超出 C1、f26 扩为三档、共享面失真），必须先重排再开工。",
         "what": "2026-11-01 v9 拓扑调优（D1~D6=A）：W0 解门（V3+V4+V2 批量 + 只读/离线准备）→ W1 双车道（M：f26→f28；P：f25→f29；收尾：f27/f34/f36/f37）→ W2 收口坐签 → W3 总门（F37-SYS 软门 → f24-β → S5 GN-004 T3 → V6）。",
-        "result": "2026-11-01 批#2 落地：V3 直接授权并写入 public 1.1.0；W1 双车道开跑——P 车道 f25/f29 执行中（变更档 status=修复中），M 车道 f26 WP1/WP2/WP4 实装进行中、f28 设计基线与补丁草案已产；收尾车道 f27 CP-V 已拆 Design/Value、f34 root-auto 登记当前不可判定、f36 T3 P0-2 追认 + W6 窗口方案成文；F37 H-14b 已交付、H-14c~e 未启动。"
+        "result": "2026-11-01 批#2 落地：V3 直接授权并写入 public 1.1.0；W1 双车道开跑——P 车道 f25/f29 执行中（变更档 status=修复中），M 车道 f26 WP1/WP2/WP4 实装进行中、f28 设计基线与补丁草案已产；收尾车道 f27 CP-V 已拆 Design/Value、f34 root-auto 登记当前不可判定、f36 T3 P0-2 追认 + W6 窗口方案成文；F37 H-14b 已交付、H-14c~e 未启动。 2026-11-16：f701 新核 V6 有条件批准未清；f701-a 已立项并推进（V2 契约落 public、N 闭合、E4b live 冻结）；f38/f39/f40 三面治理支线并行；f34 冻结待 R14。"
       },
       "tasks": [
         ["W0 f23 AC 范式全谱融汇迁移", "已闭合"],
@@ -1387,7 +1443,9 @@
         ["预留 f35 行为音效（B0 设计闭）", "进行中"],
         ["追加 f36 核独立看护（B2 + W5 部分）", "进行中"],
         ["收尾 f37 锚点记账（W1~W5 过审、UI 冻结；H-14b 已交付）", "进行中"],
-        ["v9 W1 双车道（f26/f28 · f25/f29）", "进行中"]
+        ["v9 W1 双车道（f26/f28 · f25/f29）", "进行中"],
+        ["追加 f38/f39/f40（治理支线）", "进行中"],
+        ["追加 f701 新核 / f701-a 收尾程序", "进行中"]
       ],
       "detail": "执行模型 = 人类指挥单一主线委派（裁决㉓）。追加支线 = f33~f37（f35 不进入 C1–C12，维持 B0 预留）；共享面令牌见 v9 §15.3（核/U0/madoka/.eureka/cherry+构建 alias/public）。",
       "links": [".trae/specs/s5-finalization/topology.md", ".trae/documents/20261101_模块0_S5全局拓扑调优提案.md"],
@@ -2093,14 +2151,14 @@
       "id": "F27",
       "parent": "S5-E",
       "lane": "f27 集群树",
-      "date": "2026-11-01",
+      "date": "2026-11-10",
       "status": "进行中",
       "label": "f27 agent 集群树（收尾车道）",
       "gist": "风格冻结、P0 已落；R9 等桥稳定。",
       "story": {
         "why": "并行委派的 agent 集群看不见全貌——人类需要一棵能看、能点进、能终止、能留言的集群树。",
         "what": "整树可视化 + 点击聚焦/开卡 + 跳转真实子会话 + 树上终止（H2=E 原子终止帧，父会话零 user message）+ 跟手性能；V10.3 冻结取代旧图例/点击/留言口径。",
-        "result": "2026-10-20 契约 1.0.0 落定、IS2 三叶交付；10-23 V10.3 冻结；10-27 人类批准 HD1–HD11、R9 P0 落地（含 AgentChat:634 临时交集）。R9 收尾车道等 B7 桥稳定后执行 V2b/V3/V4 与 CP5 坐签；F27 未闭合。"
+        "result": "2026-10-20 契约 1.0.0 落定、IS2 三叶交付；10-23 V10.3 冻结；10-27 人类批准 HD1–HD11、R9 P0 落地（含 AgentChat:634 临时交集）。R9 收尾车道等 B7 桥稳定后执行 V2b/V3/V4 与 CP5 坐签；F27 未闭合。 2026-11-10：B7 桥口径严格 5/5 通过；CP-V-Design / Value 仍待人，V2b/V3/V4 未签。"
       },
       "tasks": [
         ["B0 契约冻结（C1/C2/C3 → 1.0.0）", "已闭合"],
@@ -2108,7 +2166,7 @@
         ["B2 树视图 / 入口 / 跟手（IS2）", "已闭合"],
         ["V10.3 冻结 + R9 P0 落地 [V]", "已闭合"],
         ["CP-V 拆分（Design / Value）", "进行中"],
-        ["V2b/V3/V4 与 CP5 坐签", "未闭合"]
+        ["B7 桥严格 5/5 + V2b/V3/V4 与 CP5 坐签", "进行中"]
       ],
       "detail": "挂点收敛为 AgentNavbar；R9 P0 临时交集 AgentChat:634 在 P0 后回切。2026-11-01 批#2 将 CP-V 拆为 CP-V-Design / CP-V-Value。收尾车道前置 = B7 桥稳定（f37）。",
       "links": [".trae/specs/f27-agent-cluster-tree/spec.md", ".trae/documents/20261027_模块0_W1beta_R9拓扑与串并行规划.md"],
@@ -2530,20 +2588,21 @@
       "id": "F34",
       "parent": "S5-E",
       "lane": "f34 子代理卡死守卫",
-      "date": "2026-10-22",
+      "date": "2026-11-14",
       "status": "进行中",
       "label": "f34 子代理卡死守卫（无活动仲裁）",
       "gist": "实现与真机链路已绿，复验收口未过。",
       "story": {
         "why": "2026-10-19 实测：子任务已完成、父会话却再无新 part（父静止 8 小时）——且卡死会逐层向上传导，直至整棵集群冻结。判据必须是「会话 last-activity」而非总时长。",
         "what": "无活动仲裁机制：检测器（独立于被监控对象）+ 终止动作 + 上级「疑似卡死」上报 + 参数化；H2=E 原子终止帧（TerminalRecord）与父会话零 user message。",
-        "result": "2026-10-20 人类批准 C-f34-1；10-22 P1/P2 实现完成、F34-D 外部看护 + 34P 落地、真机 T1/T8/C-2-B 与 B-09 有实体证据。仍缺：双通道复验（含多级嵌套）、root-auto 真实路径、f27 BV 消费；B3/B4 未闭合。"
+        "result": "2026-10-20 人类批准 C-f34-1；10-22 P1/P2 实现完成、F34-D 外部看护 + 34P 落地、真机 T1/T8/C-2-B 与 B-09 有实体证据。仍缺：双通道复验（含多级嵌套）、root-auto 真实路径、f27 BV 消费；B3/B4 未闭合。 2026-11-10 R10 后随 F701 立项冻结；11-12 R11 复跑、R12/R13 小规模与 N++；11-13 R13.5 完成接线与因果账本；11-14 R13.5c 三轮归因收口（152ms 主因 = 新核配套）。R14 renderer / 指标口径优化未启动；F34 仍冻结，未闭合。"
       },
       "tasks": [
         ["B0 设计 + 十三轮 GN-004", "已闭合"],
         ["B2 P1/P2 实现 + F34-D 外部看护", "已闭合"],
         ["B3 双通道（含多级嵌套）", "未闭合"],
-        ["B4 复验与收口", "未闭合"]
+        ["B4 复验与收口", "未闭合"],
+        ["R10–R13.5c 因果归因", "已闭合"]
       ],
       "detail": "检测器落点 = E 混合 / D 独立进程+守护；信号源 = 核 SSE 主（桥备 / DB 兜底）；特批参数 per-task（动核 K-11）+ 审计留痕。",
       "links": [".trae/specs/f34-subagent-hang-guard/spec.md", ".trae/specs/f34-subagent-hang-guard/note.md"],
@@ -2595,19 +2654,19 @@
       "id": "F35",
       "parent": "S5-E",
       "lane": "f35 行为音效",
-      "date": "2026-10-21",
+      "date": "2026-11-09",
       "status": "进行中",
       "label": "f35 行为音效系统（反馈音景）",
-      "gist": "设计清单已出，5 个选择待裁；代码未动。",
+      "gist": "设计冻结、实现已落；听感与双通道未做。",
       "story": {
         "why": "人类 2026-10-18 要求「统计关键行动和行为并给反馈音效」——系统在关键动作上缺即时听觉反馈，人不知道它有没有在动。",
         "what": "B0 普查 21 项事件（MVP 9 / 后续 8 / 不适用 4），每项带 file:line；单点 SoundBridge + 零依赖 WebAudio 设计、去重节流、焦点/静音、无障碍底线。",
-        "result": "2026-10-21 B0 设计交付（设计面闭合、验证面未闭合）：事件清单、设计、双通道测试计划、组级包四件落盘；D1~D5 五项待人类裁决，B1 未启动。"
+        "result": "2026-11-08 W4-P4 实现面交付；11-09 V4 全冻结 + 人类全量批准：17 项 / 20 音清单、20 WAV、settings v2、SoundBridge / 门控、OS 静音、chatbox 两音；33 单测 PASS，20 音资产迁入模块15。未闭合：双通道 A1–A10 / B1–B11、live 听感、W9 逐音审批、完整 typecheck（resource BLOCKED）、GN-004 未发起。 按 f35 tasks §4.3，B1 不标已闭合（听感与语义确认转入 W9 逐音审批）。"
       },
       "tasks": [
         ["B0 普查 + 清单草案 + 设计", "已闭合"],
-        ["B1 清单确认 [V] + 选型定稿", "未开始"],
-        ["B2 实现（触发链/设置/资产）", "未开始"],
+        ["B1 清单裁决（D1–D5）+ 实现落地", "进行中"],
+        ["B2 实现（W4-P4 已交付；双通道未跑）", "进行中"],
         ["B3 双通道 + 听感验收 [V]", "未开始"]
       ],
       "detail": "音景 = Madoka 子部分：chatbox 态完全静默，启闭过渡期间 armed；MVP 事件均已有视觉信号（静音不丢信息）。f35 不进入 C1–C12，维持 B0 预留。",
@@ -2632,14 +2691,14 @@
       "id": "F35-B1",
       "parent": "F35",
       "lane": "f35 行为音效",
-      "date": null,
-      "status": "未开始",
-      "label": "清单确认与实现",
-      "gist": "等 D1~D5 五项裁决。",
+      "date": "2026-11-09",
+      "status": "进行中",
+      "label": "清单裁决与实现落地",
+      "gist": "D1–D5 已裁；实现已落，听感未验。",
       "story": null,
       "tasks": null,
-      "detail": "B1 清单人类确认 + 选型定稿；B2 实现触发链/设置/资产；B3 双通道 + 听感验收。",
-      "links": [],
+      "detail": "D1–D5 人类裁决已落（pytheory 合成 / 17 项 / 默认 100% 全开 / OS 静音 / chatbox 两音）；W4-P4 实现面 2026-11-08 交付（20 WAV + SoundBridge / 门控 + settings + 33 单测 PASS）。按 f35 tasks §4.3「B1 不标已闭合」——17 项 / 20 音听感与语义确认转入 W9 逐音审批，尚未发生。",
+      "links": [".trae/specs/f35-ux-soundscape/note.md"],
       "marks": []
     },
     {
@@ -3991,6 +4050,378 @@
       "tasks": null,
       "detail": "v6.3（P16 断面，2026-09-30）：人类把技能三把器械当被测对象做沙箱压测（33 变异体），抓出三条「断言与标签脱钩」的假绿（selftest T3/T7、craft_audit T9）→ 最小改动修死 + 控制台编码纪律（新增 T14 守护）+ 器械假红拆分 + 留痕卫生。回归：selftest 22 组 / 130 断言 / 0 失败；craft_audit --selftest 16/0；变异捕获 19 → 26 处。判定语义零改动。",
       "links": [".trae/documents/20260930_模块0_夹具断言脱钩修复.md", ".trae/skills/anchor-purification/HISTORY.md"],
+      "marks": []
+    },
+    {
+      "id": "F701",
+      "parent": "S5-E",
+      "lane": "f701 新核 prokaryon",
+      "date": "2026-11-10",
+      "status": "进行中",
+      "label": "f701 新核 eureka prokaryon（另起一核）",
+      "gist": "新核立项并跑通基准；收尾程序另立。",
+      "story": {
+        "why": "旧核（opencode 基线）的性能与语义天花板已经摸到——终止、真相面、读模型各自为政，继续在旧核上打补丁只会把复杂度堆到不可控。",
+        "what": "以 opencode 为蓝本与兼容接口，clean-room 构筑双原核四平面新核（执行面 AEP / 真相热面 / 真相冷面 / 读模型），用 A0→E0→F0 迭代环逐轮做 A/B 与语义对齐，再 FULL 全量构筑与接线。",
+        "result": "2026-11-10 立项；E0/E0c 首轮 met（real 吞吐 0.5→22.4 cps = 44.8×；M1 409→31.5ms 为 fake / A1 同口径代理）、E2/E2b 产出架构性能证据包；11-11 V5 批准并冻结受试体，FULL 构筑 + Cherry 设置页接线完成；V6 = 有条件批准（公共契约落盘 / 完整类型检查 / 真实客户端验证未清），F701 未闭合。"
+      },
+      "tasks": [
+        ["C0 四锚与预注册冻结", "已闭合"],
+        ["E0/E0c 首轮基准（fake + real）", "已闭合"],
+        ["E2/E2b 架构性能证据包", "已闭合"],
+        ["FULL 全量构筑 + 接线 + 冻结", "已闭合"],
+        ["V6 条件清理（未闭幕）", "进行中"]
+      ],
+      "detail": "落点 = `modules/模块i_EurekaProkaryon/`（i = 虚数 i / 独立族）；受试体冻结 `_freeze/E2B_20261111/`（78 files / 1,010,892B），证据归档 625 files / 41,398,478B。F34 本体不在范围内（只读消费其证据作夹具）。",
+      "links": [".eureka/specs/F701_eureka-prokaryon/spec.md", ".eureka/specs/F701_eureka-prokaryon/tasks.md", "test_reports/f701_eureka_prokaryon/"],
+      "marks": ["[V]"]
+    },
+    {
+      "id": "F701-E0",
+      "parent": "F701",
+      "lane": "f701 新核 prokaryon",
+      "date": "2026-11-10",
+      "status": "已闭合",
+      "label": "E0/E0c 首轮基准（fake + real）",
+      "gist": "首轮 met：吞吐 44.8×；M1 为 fake 代理。",
+      "story": null,
+      "tasks": null,
+      "detail": "E0 先以 fake provider 隔离核，E0b 修 closed-loop，E0c 换 deepseek-flash 真模型 N=20：real 吞吐 0.5→22.4 cps（44.8×）、M3/M4 PASS；M1 p50 409.0→31.5ms 属 fake / A1 同口径代理（非 real 腿）；SEM 后续修至 pass、AEP 补门 9/9 PASS；AR0-4（healthz 6 计数器）与 AR0-5（readmodel 消费 A1 事件）已修，138 项回归全绿。E1 因预注册时序违规被独立审查判 invalid，不覆盖 E0c。",
+      "links": [".eureka/specs/F701_eureka-prokaryon/spec.md", "test_reports/f701_eureka_prokaryon/run_e0c/human_review/G-V3-a/GV3A_REPORT.html"],
+      "marks": []
+    },
+    {
+      "id": "F701-E2",
+      "parent": "F701",
+      "lane": "f701 新核 prokaryon",
+      "date": "2026-11-11",
+      "status": "已闭合",
+      "label": "E2/E2b 架构性能证据包",
+      "gist": "修 AR1 后 W2 转正；容量缺口已修。",
+      "story": null,
+      "tasks": null,
+      "detail": "E2 首轮 W2 暴露 M1 4.19× 劣化（AR1 流式无中断取消）→ E2b 修复后：W1 M1 3.98×、吞吐 38.88×；W2 M1 1.75×、吞吐 12.89×。N=50/100 like-for-like：W1 55.93/49.38 cps、W2 47.16/45.16 cps；`--n-shards auto` 修掉 `EUREKA_SHARD_DOWN`（200 案→0）。baseline 崩塌时比值只作下界。",
+      "links": ["test_reports/f701_eureka_prokaryon/e2b/report/E2B_REPORT.html", "test_reports/f701_eureka_prokaryon/archive/E2B_20261111"],
+      "marks": []
+    },
+    {
+      "id": "F701-FULL",
+      "parent": "F701",
+      "lane": "f701 新核 prokaryon",
+      "date": "2026-11-11",
+      "status": "已闭合",
+      "label": "FULL 全量构筑 + Cherry 接线",
+      "gist": "231 passed；MDLT 8/8；设置页挂载。",
+      "story": null,
+      "tasks": null,
+      "detail": "FULL-BUILD 三组（执行面 autoscaler/settings/telemetry、真相热 outbox、冷面、读模型、设置页 UI、wire 19 点）；通道 A 231 passed、MDLT 8/8、N=20 主判定 4/4；`/settings/prokaryon` 挂载（写面审计 5 改 + 1 新增，三语 i18n 10 键）。V5 人类批准后冻结受试体。残余：完整 renderer typecheck resource BLOCKED、真实 Electron/Cherry 可见性留 V6。",
+      "links": [".eureka/specs/F701_eureka-prokaryon/spec.md", "modules/模块i_EurekaProkaryon/"],
+      "marks": ["[V]"]
+    },
+    {
+      "id": "F701-V6",
+      "parent": "F701",
+      "lane": "f701 新核 prokaryon",
+      "date": "2026-11-11",
+      "status": "进行中",
+      "label": "V6 有条件批准（未闭幕）",
+      "gist": "条件未清：契约落盘 / 类型检查 / 真机验证。",
+      "story": null,
+      "tasks": null,
+      "detail": "人类 V6 = 有条件批准：① V2 五件 public 落盘；② 完整 renderer typecheck；③ 真实 Electron/Cherry 运行期验证。F701 未闭合；F34 R14 作为二次验收尾巴移交 F701-a。",
+      "links": [".eureka/specs/F701_eureka-prokaryon/note.md"],
+      "marks": ["[V]"]
+    },
+    {
+      "id": "F701A-P0",
+      "parent": "F701-V6",
+      "lane": "f701-a 定形面",
+      "date": "2026-11-15",
+      "status": "已闭合",
+      "label": "P0 立项 + 17 项锚点固定",
+      "gist": "四锚 + 四子支线落盘，CP0b 闭合。",
+      "story": {
+        "why": "新核执行层已证明有效，但终止语义、桥语义投影、集群树增量三面各自还缺一条可闭合的收口路径——不单独立程序，就会散在各处互相等待。",
+        "what": "立 F701-a 程序伞：主四锚 + MB/TX/BP/IS 四个独立子支线（同一 note / topology），以工程点计量，最终合流验收并保留 F34 R14 二次验收尾巴。",
+        "result": "2026-11-15 人类批准并 Homura 固定（17/17 sha，`.eureka/.anchors/specs/F701-a/FIXED.json`）；CP0b 闭合；GN-004 T5 警示放行（HARD 0）；W1 三线并行（MB / TX-1 / IS-P0），BP 仅 prep。"
+      },
+      "tasks": [
+        ["主四锚 + 四子支线落盘", "已闭合"],
+        ["GN-004 T5 + 人类批准", "已闭合"],
+        ["Homura 固定 17/17 + CP0b", "已闭合"]
+      ],
+      "detail": "程序级 7 点（P0/MB/TX/BP/IS/INT/TAIL），叶点 27（MB 5 + TX 7 + BP 8 + IS 7）；VERIFY/REPORT 为 INT 的产出约束，不新增程序点。",
+      "links": [".eureka/specs/F701-a/spec.md", ".eureka/specs/F701-a/tasks.md", ".eureka/.anchors/specs/F701-a/FIXED.json"],
+      "marks": ["[V]"]
+    },
+    {
+      "id": "F701A-MB",
+      "parent": "F701A-P0",
+      "lane": "f701-a 定形面",
+      "date": "2026-11-16",
+      "status": "进行中",
+      "label": "MB N 扫描与 SLO 基线",
+      "gist": "N 档 10/20/50/100/160；N 已闭合。",
+      "story": null,
+      "tasks": null,
+      "detail": "N 不设产品硬上限，本阶段基线最高 160、N=200 不做（每档 21 样本）；10/10、88/88 通过，内存峰值 ≤919.8MB；U-23/U-32 关闭。MB 五个叶点整体未闭合。",
+      "links": [".eureka/specs/F701-a/subs/F701-a-MB/spec.md"],
+      "marks": []
+    },
+    {
+      "id": "F701A-TX",
+      "parent": "F701A-P0",
+      "lane": "f701-a 定形面",
+      "date": "2026-11-16",
+      "status": "进行中",
+      "label": "TX 终止事务契约（V2 落 public）",
+      "gist": "V2 -02 已落公共契约区，实现未完。",
+      "story": null,
+      "tasks": null,
+      "detail": "人类直授权 Geass 落盘 V2 -02：`public/schema/terminal/` 10 文件 + `U0_kernel_adapter.pyi` 2.1.0 + 根 CHANGELOG；包校验 14/14、G-5 25/25、落盘校验 12/12（current-note 2026-11-16）、契约 RED 17/17 + GREEN 22/22；回滚备份就绪。TX 实现（exactly-once / confirmedAt / scope/cascade / replay / fencing）未完成。",
+      "links": [".eureka/specs/F701-a/subs/F701-a-TX/spec.md", "public/schema/terminal", "public/interface_stub/U0_kernel_adapter.pyi"],
+      "marks": ["[V]"]
+    },
+    {
+      "id": "F701A-BP",
+      "parent": "F701A-P0",
+      "lane": "f701-a 定形面",
+      "date": null,
+      "status": "未开始",
+      "label": "BP 桥兼容与原生投影",
+      "gist": "等 TX 契约后开工。",
+      "story": null,
+      "tasks": null,
+      "detail": "W1 仅 prep：TX 契约前不实现；后续承载 `/state` + terminal + SSE replay + after_seq + active set + 兼容/原生双视图对账。",
+      "links": [".eureka/specs/F701-a/subs/F701-a-BP/spec.md"],
+      "marks": []
+    },
+    {
+      "id": "F701A-IS",
+      "parent": "F701A-P0",
+      "lane": "f701-a 定形面",
+      "date": "2026-11-16",
+      "status": "当前不可判定",
+      "label": "IS 场景模型与终端 overlay",
+      "gist": "E4b live 三次被内存阻断，已冻结。",
+      "story": null,
+      "tasks": null,
+      "detail": "IS-P0 场景对象模型 + 旧 terminal facts 基线；E4b live r4b 1536 被 1724.3 阻断、r5 2048 被 2224.137 阻断（0 panel / 0 observation / 无 STALL / 已 cleanup）；E4b live 冻结；崩溃检讨结论 = 不可归因 / 当前不可判定。",
+      "links": [".eureka/specs/F701-a/subs/F701-a-IS/spec.md", "test_reports/f701a/"],
+      "marks": []
+    },
+    {
+      "id": "F701A-CL",
+      "parent": "F701A-P0",
+      "lane": "f701-a 定形面",
+      "date": null,
+      "status": "未开始",
+      "label": "合流验收 + R14 二次验收",
+      "gist": "INT / VERIFY / REPORT / TAIL 未跑。",
+      "story": null,
+      "tasks": null,
+      "detail": "W4 合流（terminal 核→桥→UI 贯通 + 对账）与 RPT 验收/报告未做；F34 R14 未跑；F701-a 未全局闭合，不得写「全局闭合」。",
+      "links": [".eureka/specs/F701-a/tasks.md"],
+      "marks": []
+    },
+    {
+      "id": "F38",
+      "parent": "S5-E",
+      "lane": "f38 崔判官系统",
+      "date": "2026-11-03",
+      "status": "进行中",
+      "label": "f38 崔判官系统（灾难止损 / 稀疏回滚）",
+      "gist": "统一底座已落 800+ 文件；三路复审仍 BLOCK。",
+      "story": {
+        "why": "长程实践最大的风险不是慢，是「大灾难来了收不回来」——没有可审计、可恢复、可验证的安全网，越往前走越不敢走。",
+        "what": "在 Madoka 抽象层下建「记录-判定-稀疏回滚-保留/空间」子系统；2026-11-04 起收敛为统一底座 `cui.core` + 双适配，不改 opencode 基线、不改 public。",
+        "result": "规划 v1.2 + 统一底座规格落盘；GN-004 T1 警示放行（HARD 0 / SOFT 11）；实现已落 807 文件。但三路专项复审（Git / 算法 / 意图）均 BLOCK，V1.1 不可进入，需第二轮集成修复 + 三路复审 + GN-004 R4；支线未闭合，V1 待人类裁决。"
+      },
+      "tasks": [
+        ["立项 + 理论 / 实验预注册", "已闭合"],
+        ["GN-004 T1 + 红队", "已闭合"],
+        ["统一底座 cui.core + 双适配", "已闭合"],
+        ["三路专项复审 R2（BLOCK）", "已闭合"],
+        ["第二轮集成修复 + 复审", "未闭合"]
+      ],
+      "detail": "写面 = `modules/模块14_崔判官系统/`；组级契约 `_contract.md` 为术语 / 裁决 / FC 唯一来源；不宣称闭合。",
+      "links": [
+        ".trae/specs/f38-cui-panguan-system/spec.md",
+        ".trae/specs/f38-cui-panguan-system/_contract.md",
+        "modules/模块14_崔判官系统/cui/core"
+      ],
+      "marks": []
+    },
+    {
+      "id": "F38-T1",
+      "parent": "F38",
+      "lane": "f38 崔判官系统",
+      "date": "2026-11-03",
+      "status": "已闭合",
+      "label": "GN-004 T1 警示放行 + 红队",
+      "gist": "HARD 0 / SOFT 11；V1 待人类。",
+      "story": null,
+      "tasks": null,
+      "detail": "`08_GN004_T1_20261103.md` = CAUTION-PASS（HARD 0 / SOFT 11 / NIT 8）；R1 红队与 GN-004 分开记账；V1 仍待人类裁决。",
+      "links": [".trae/specs/f38-cui-panguan-system/08_GN004_T1_20261103.md"],
+      "marks": []
+    },
+    {
+      "id": "F38-U",
+      "parent": "F38",
+      "lane": "f38 崔判官系统",
+      "date": "2026-11-04",
+      "status": "已闭合",
+      "label": "统一底座 cui.core + 双适配",
+      "gist": "Track A/B 收敛为统一底座。",
+      "story": null,
+      "tasks": null,
+      "detail": "2026-11-04 裁决：Track A/B 仅保留历史 / 迁移语义，活性架构 = 统一底座 `cui.core` + 双适配；规格 11–14 落盘（架构与存储 / 运行时与适配器 / IDE 时间线 / 验证与红队）。",
+      "links": [".trae/specs/f38-cui-panguan-system/11_统一底座_架构与存储.md"],
+      "marks": []
+    },
+    {
+      "id": "F38-R2",
+      "parent": "F38",
+      "lane": "f38 崔判官系统",
+      "date": "2026-11-04",
+      "status": "已闭合",
+      "label": "三路专项复审 R2（BLOCK）",
+      "gist": "Git / 算法 / 意图三路均 BLOCK。",
+      "story": null,
+      "tasks": null,
+      "detail": "Git = HARD-N1（A-GIT case ID 多重定义）；算法 = HARD-ALG 9 项仍存在；意图 = 测试 / 红队仍未落 YAML、未注册 runner。V1.1 不可进入；需第二轮集成修复 + 三路复审 + GN-004 R4。",
+      "links": [".trae/specs/f38-cui-panguan-system/22_专项复审_R2汇总.md"],
+      "marks": []
+    },
+    {
+      "id": "F39",
+      "parent": "S5-E",
+      "lane": "f39 统一终止语义",
+      "date": "2026-11-05",
+      "status": "进行中",
+      "label": "f39 统一终止语义（run 级）",
+      "gist": "语义已裁到 v12；W0 交付，W1 未开工。",
+      "story": {
+        "why": "「终止」在核执行层、UI 意图层、cherry 记录层、URSL 内容层各有定义——用户按一次终止，执行停了 UI 还在 running，审计也说不清到底停了什么。",
+        "what": "收敛为一条 run 级端到端语义：终止 = 目标 run + 所有仍在运行的下级 run；空闲 / 已完成 run 不重写历史；一次终止 = 一条聚合 `TerminalRecord`；连带终止 = `cancelled` + `cause=cascade`。",
+        "result": "语义经 v9–v14 十三轮独立审查收敛（人类 2026-11-06 终裁 activity-scoped）；W0 设计交付 + GN-004 W0 警示放行（P0=0 / P1=6 / P2=12）；V1/V2 可提交但不可冻结，W1 不开始；产品代码未实现，支线未闭合。"
+      },
+      "tasks": [
+        ["立项 + 四锚", "已闭合"],
+        ["GN-004 T1（十三轮）", "已闭合"],
+        ["W0 设计交付 + 契约落盘", "已闭合"],
+        ["W1 实现", "未开始"]
+      ],
+      "detail": "规划面；不改 public / cherry / opencode，不实现产品代码；W0 产物 = `w0/**` + `test_reports/f39/w0/**`。",
+      "links": [".trae/specs/f39-unified-termination/spec.md", ".trae/specs/f39-unified-termination/note.md"],
+      "marks": []
+    },
+    {
+      "id": "F39-P0",
+      "parent": "F39",
+      "lane": "f39 统一终止语义",
+      "date": "2026-11-06",
+      "status": "已闭合",
+      "label": "四锚与人类语义裁决",
+      "gist": "v12 终裁 activity-scoped。",
+      "story": null,
+      "tasks": null,
+      "detail": "人类 2026-11-06 终裁：activity-scoped 终止（`runningRuns(subtree)`；仅全静默 no-op）；`waiting_children` 改为 nodeActivity 投影覆盖层；nodeActivity 载体 = renderer `deriveNodeActivity(runState, subtreeActivity)`。",
+      "links": [".trae/specs/f39-unified-termination/spec.md"],
+      "marks": []
+    },
+    {
+      "id": "F39-W0",
+      "parent": "F39",
+      "lane": "f39 统一终止语义",
+      "date": "2026-11-06",
+      "status": "已闭合",
+      "label": "W0 设计交付 + 契约落盘",
+      "gist": "警示放行；V2 内核授权已落。",
+      "story": null,
+      "tasks": null,
+      "detail": "W0 产物 `w0/**` + `test_reports/f39/w0/**`；GN-004 W0 = 警示放行（P0=0）；V2 内核授权落盘 + 回滚包（`test_reports/f39/geass_landing_20261105/`）。",
+      "links": ["test_reports/f39/geass_landing_20261105/LANDING.md", ".trae/specs/f39-unified-termination/note.md"],
+      "marks": []
+    },
+    {
+      "id": "F39-W1",
+      "parent": "F39",
+      "lane": "f39 统一终止语义",
+      "date": null,
+      "status": "未开始",
+      "label": "W1 实现（未开工）",
+      "gist": "V1/V2 可提交不可冻结。",
+      "story": null,
+      "tasks": null,
+      "detail": "W1 不开始；V1/V2 可提交但不可冻结；须人类放行后才进实现。",
+      "links": [".trae/specs/f39-unified-termination/tasks.md"],
+      "marks": []
+    },
+    {
+      "id": "F40",
+      "parent": "S5-E",
+      "lane": "f40 测试入口适配器",
+      "date": "2026-11-07",
+      "status": "进行中",
+      "label": "f40 测试入口适配器",
+      "gist": "唯一入口已落；人工签收与迁移未完。",
+      "story": {
+        "why": "各测试脚本各自为政：墙值散落、PIPE 读输出死锁、超时被写成空值导致三值语义塌陷、超过 2 分钟 / 5 分钟的特批靠人肉记忆。",
+        "what": "做一个所有过饱和机械测试 / MDLT / 红队剧本的唯一入口适配器：`Popen` + 适配器 watchdog 为第一层时间墙，输出重定向到文件，只按自己拉起的 PID 精确终止，结果固定六值。",
+        "result": "2026-11-07 adapter + README + 自测（15 场景）落地；GN-004 R1/R1b/R2 均警示放行；trial 3 runs / 4 cases 全 PASS；已上提 AGENTS §4.13/§4.10/§4.16。未闭合：人类签收、旧脚本迁移、CI 拦截、非 Windows 移植。"
+      },
+      "tasks": [
+        ["T0 四锚冻结", "已闭合"],
+        ["adapter + 自测（15 场景）", "已闭合"],
+        ["GN-004 R1/R1b/R2 + 试用", "已闭合"],
+        ["人类签收 + 旧脚本迁移", "未开始"]
+      ],
+      "detail": "写面 = `.trae/specs/f40-test-entry-adapter/**` + `test_reports/_harness/**` + `test_reports/f40_test_adapter/**`；适配器不是 oracle。",
+      "links": [".trae/specs/f40-test-entry-adapter/spec.md", ".trae/specs/f40-test-entry-adapter/note.md", "test_reports/f40_test_adapter"],
+      "marks": []
+    },
+    {
+      "id": "F40-ADP",
+      "parent": "F40",
+      "lane": "f40 测试入口适配器",
+      "date": "2026-11-07",
+      "status": "已闭合",
+      "label": "adapter 落地 + 自测",
+      "gist": "15 场景全过。",
+      "story": null,
+      "tasks": null,
+      "detail": "`test_reports/_harness/test_entry_adapter.py` + README 落地；自测 15 场景全 pass；FIX-1~5 已修。",
+      "links": ["test_reports/_harness/README.md"],
+      "marks": []
+    },
+    {
+      "id": "F40-R2",
+      "parent": "F40",
+      "lane": "f40 测试入口适配器",
+      "date": "2026-11-07",
+      "status": "已闭合",
+      "label": "GN-004 R2 + 试用",
+      "gist": "R2 警示放行；4 case 全 PASS。",
+      "story": null,
+      "tasks": null,
+      "detail": "R2 = 警示放行（无 HARD / SOFT_BLOCK；C1–C12 成立）；trial 3 runs / 4 cases 全 PASS。",
+      "links": [".trae/specs/f40-test-entry-adapter/note.md"],
+      "marks": []
+    },
+    {
+      "id": "F40-CL",
+      "parent": "F40",
+      "lane": "f40 测试入口适配器",
+      "date": null,
+      "status": "未开始",
+      "label": "人类签收与脚本迁移",
+      "gist": "后续批次。",
+      "story": null,
+      "tasks": null,
+      "detail": "主线程 AGENTS 强化已落；剩余 = 人类签收、现有脚本迁移、CI 拦截、非 Windows 移植。",
+      "links": [".trae/specs/f40-test-entry-adapter/tasks.md"],
       "marks": []
     }
   ],
